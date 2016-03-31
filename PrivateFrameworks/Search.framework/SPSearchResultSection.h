@@ -15,6 +15,7 @@
     NSString *_icon;
     BOOL _isGlanceCategory;
     NSMutableOrderedSet *_resultSet;
+    NSString *_resultSetIdentifier;
     NSString *_scheme;
 }
 
@@ -32,12 +33,14 @@
 @property (nonatomic, retain) NSArray *hiddenExtResults;
 @property (nonatomic, retain) NSString *icon;
 @property (nonatomic) BOOL isGlanceCategory;
+@property (nonatomic, retain) NSString *resultSetIdentifier;
 @property (nonatomic, retain) NSString *scheme;
 
 - (void).cxx_destruct;
 - (void)addHiddenExtResult:(id)arg1;
 - (void)addResults:(id)arg1;
 - (void)addResults:(id)arg1 atIndex:(unsigned int)arg2;
+- (void)addResultsFromArray:(id)arg1;
 - (id)category;
 - (void)clearResults;
 - (void)copyTo:(id)arg1;
@@ -64,6 +67,7 @@
 - (BOOL)readFrom:(id)arg1;
 - (void)removeResultsAtIndex:(unsigned int)arg1;
 - (id)resultSet;
+- (id)resultSetIdentifier;
 - (id)results;
 - (id)resultsAtIndex:(unsigned int)arg1;
 - (unsigned int)resultsCount;
@@ -79,6 +83,7 @@
 - (void)setHiddenExtResults:(id)arg1;
 - (void)setIcon:(id)arg1;
 - (void)setIsGlanceCategory:(BOOL)arg1;
+- (void)setResultSetIdentifier:(id)arg1;
 - (void)setScheme:(id)arg1;
 - (void)writeTo:(id)arg1;
 

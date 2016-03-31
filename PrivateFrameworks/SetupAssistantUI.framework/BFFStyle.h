@@ -8,6 +8,7 @@
 
 - (void)applyThemeToAllTableViews;
 - (void)applyThemeToLabel:(id)arg1;
+- (void)applyThemeToNavigationController:(id)arg1;
 - (void)applyThemeToRemoteUIWebViewController:(id)arg1;
 - (void)applyThemeToSectionHeaderLabel:(id)arg1;
 - (void)applyThemeToTableCell:(id)arg1;
@@ -15,7 +16,7 @@
 - (void)applyThemeToTitleLabel:(id)arg1;
 - (id)backgroundColor;
 - (float)baselineInsetForHeaderTitle;
-- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })edgeInsetsForHeader;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })edgeInsetsForHeaderView:(id)arg1;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })edgeInsetsForTable:(id)arg1;
 - (float)headerIconBaselineOffset;
 - (float)headerTitleBaselineOffsetHasIcon:(BOOL)arg1;

@@ -10,6 +10,7 @@
     BOOL _allowsCellularAccess;
     BOOL _allowsPowerNapScheduling;
     NSString *_authPromptReason;
+    <CKDURLRequestAuthRetryDelegate> *_authRetryDelegate;
     NSFileHandle *_binaryRequestFileHandle;
     NSString *_binaryRequestLogFilePath;
     NSFileHandle *_binaryResponseFileHandle;
@@ -17,6 +18,7 @@
     int _cachedPartitionType;
     int _cachedServerType;
     BOOL _cancelled;
+    NSDictionary *_clientProvidedAdditionalHeaderValues;
     id /* block */ _completionBlock;
     CKDClientContext *_context;
     int _databaseScope;
@@ -75,6 +77,8 @@
     CKDProtobufStreamWriter *_streamWriter;
     CKTimeLogger *_timeLogger;
     double _timeoutInterval;
+    NSDictionary *_timingData;
+    CKBlockingAsyncQueue *_trafficQueue;
     CKDProtocolTranslator *_translator;
     unsigned long long _transmissionActivityID;
     NSURLSessionDataTask *_urlSessionTask;
@@ -89,6 +93,7 @@
 @property (nonatomic) BOOL allowsCellularAccess;
 @property (nonatomic) BOOL allowsPowerNapScheduling;
 @property (nonatomic, retain) NSString *authPromptReason;
+@property (nonatomic) <CKDURLRequestAuthRetryDelegate> *authRetryDelegate;
 @property (nonatomic, retain) NSFileHandle *binaryRequestFileHandle;
 @property (nonatomic, retain) NSString *binaryRequestLogFilePath;
 @property (nonatomic, retain) NSFileHandle *binaryResponseFileHandle;
@@ -96,6 +101,7 @@
 @property (nonatomic) int cachedPartitionType;
 @property (nonatomic) int cachedServerType;
 @property (getter=isCancelled) BOOL cancelled;
+@property (nonatomic, retain) NSDictionary *clientProvidedAdditionalHeaderValues;
 @property (nonatomic, copy) id /* block */ completionBlock;
 @property (nonatomic, retain) CKDClientContext *context;
 @property (nonatomic) int databaseScope;
@@ -154,6 +160,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, retain) CKTimeLogger *timeLogger;
 @property (nonatomic) double timeoutInterval;
+@property (nonatomic, retain) NSDictionary *timingData;
+@property (nonatomic, retain) CKBlockingAsyncQueue *trafficQueue;
 @property (nonatomic, retain) CKDProtocolTranslator *translator;
 @property (nonatomic, readonly) NSURL *url;
 @property (retain) NSURLSessionDataTask *urlSessionTask;
@@ -189,13 +197,16 @@
 - (int)_handlePlistResult:(id)arg1;
 - (int)_handleServerJSONResult:(id)arg1;
 - (int)_handleServerProtobufResult:(id)arg1 rawData:(id)arg2;
+- (id /* block */)_jsonObjectParsedBlock;
 - (void)_loadRequest:(id)arg1;
 - (void)_logHTTPResponse:(id)arg1;
 - (void)_logParsedObject:(id)arg1;
 - (void)_logRequest:(id)arg1;
+- (void)_logRequestObject:(id)arg1;
 - (void)_makeTrafficFileHandleWithPrefix:(id)arg1 outPath:(id*)arg2 outHandle:(id*)arg3;
 - (void)_performRequest;
 - (void)_populateURLSessionConfiguration;
+- (id /* block */)_protobufObjectParsedBlock;
 - (void)_registerPushTokens;
 - (id)_requestFileHandle;
 - (id)_responseFileHandle;
@@ -204,6 +215,7 @@
 - (void)_setupPublicDatabaseURL;
 - (void)_tearDownStreamWriter;
 - (id)_versionHeader;
+- (id /* block */)_xmlObjectParsedBlock;
 - (id)acceptContentType;
 - (id)accountInfoProvider;
 - (id)additionalHeaderValues;
@@ -214,6 +226,7 @@
 - (BOOL)allowsCellularAccess;
 - (BOOL)allowsPowerNapScheduling;
 - (id)authPromptReason;
+- (id)authRetryDelegate;
 - (id)binaryRequestFileHandle;
 - (id)binaryRequestLogFilePath;
 - (id)binaryResponseFileHandle;
@@ -223,6 +236,7 @@
 - (int)cachedServerType;
 - (void)cancel;
 - (id)ckShortDescription;
+- (id)clientProvidedAdditionalHeaderValues;
 - (id /* block */)completionBlock;
 - (id)context;
 - (int)databaseScope;
@@ -304,6 +318,7 @@
 - (void)setAllowsCellularAccess:(BOOL)arg1;
 - (void)setAllowsPowerNapScheduling:(BOOL)arg1;
 - (void)setAuthPromptReason:(id)arg1;
+- (void)setAuthRetryDelegate:(id)arg1;
 - (void)setBinaryRequestFileHandle:(id)arg1;
 - (void)setBinaryRequestLogFilePath:(id)arg1;
 - (void)setBinaryResponseFileHandle:(id)arg1;
@@ -311,6 +326,7 @@
 - (void)setCachedPartitionType:(int)arg1;
 - (void)setCachedServerType:(int)arg1;
 - (void)setCancelled:(BOOL)arg1;
+- (void)setClientProvidedAdditionalHeaderValues:(id)arg1;
 - (void)setCompletionBlock:(id /* block */)arg1;
 - (void)setContext:(id)arg1;
 - (void)setDatabaseScope:(int)arg1;
@@ -345,6 +361,8 @@
 - (void)setSourceApplicationSecondaryIdentifier:(id)arg1;
 - (void)setTimeLogger:(id)arg1;
 - (void)setTimeoutInterval:(double)arg1;
+- (void)setTimingData:(id)arg1;
+- (void)setTrafficQueue:(id)arg1;
 - (void)setTranslator:(id)arg1;
 - (void)setUrlSessionTask:(id)arg1;
 - (void)setVoucher:(id)arg1;
@@ -357,6 +375,8 @@
 - (void)tearDownResourcesAndReleaseTheZoneLocks;
 - (id)timeLogger;
 - (double)timeoutInterval;
+- (id)timingData;
+- (id)trafficQueue;
 - (id)translator;
 - (void)updateSignatureWithReceivedBytes:(id)arg1;
 - (void)updateSignatureWithTransmittedBytes:(id)arg1;

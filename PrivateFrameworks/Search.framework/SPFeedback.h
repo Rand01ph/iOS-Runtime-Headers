@@ -7,6 +7,7 @@
     unsigned int _domain;
     NSString *_externalIdentifier;
     NSString *_fbq;
+    NSArray *_geoPlaceData;
     unsigned int _geoUserSequenceNumber;
     NSString *_geoUserSessionIDString;
     double _geoUserSessionStartTime;
@@ -15,6 +16,7 @@
     NSString *_keyboardLanguage;
     NSString *_predictionIdentifier;
     NSString *_protectionClass;
+    NSString *_resultSetIdentifier;
     NSArray *_results;
     double _timestamp;
     NSString *_web_fbq;
@@ -24,6 +26,7 @@
 @property (nonatomic) unsigned int domain;
 @property (nonatomic, retain) NSString *externalIdentifier;
 @property (nonatomic, copy) NSString *fbq;
+@property (nonatomic, retain) NSArray *geoPlaceData;
 @property (nonatomic) unsigned int geoUserSequenceNumber;
 @property (nonatomic, retain) NSString *geoUserSessionIDString;
 @property (nonatomic) double geoUserSessionStartTime;
@@ -32,6 +35,7 @@
 @property (nonatomic, retain) NSString *keyboardLanguage;
 @property (nonatomic, copy) NSString *predictionIdentifier;
 @property (nonatomic, retain) NSString *protectionClass;
+@property (nonatomic, copy) NSString *resultSetIdentifier;
 @property (nonatomic, retain) NSArray *results;
 @property (nonatomic, readonly) double timestamp;
 @property (nonatomic, copy) NSString *web_fbq;
@@ -46,6 +50,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)externalIdentifier;
 - (id)fbq;
+- (id)geoPlaceData;
 - (unsigned int)geoUserSequenceNumber;
 - (id)geoUserSessionIDString;
 - (double)geoUserSessionStartTime;
@@ -59,12 +64,14 @@
 - (id)parsecFeedbackFromSession:(id)arg1 class:(Class)arg2;
 - (id)predictionIdentifier;
 - (id)protectionClass;
+- (id)resultSetIdentifier;
 - (id)results;
 - (id)serializedActivityInfoWithResult:(id)arg1 attributes:(id)arg2;
 - (void)setBundleID:(id)arg1;
 - (void)setDomain:(unsigned int)arg1;
 - (void)setExternalIdentifier:(id)arg1;
 - (void)setFbq:(id)arg1;
+- (void)setGeoPlaceData:(id)arg1;
 - (void)setGeoUserSequenceNumber:(unsigned int)arg1;
 - (void)setGeoUserSessionIDString:(id)arg1;
 - (void)setGeoUserSessionStartTime:(double)arg1;
@@ -73,6 +80,7 @@
 - (void)setKeyboardLanguage:(id)arg1;
 - (void)setPredictionIdentifier:(id)arg1;
 - (void)setProtectionClass:(id)arg1;
+- (void)setResultSetIdentifier:(id)arg1;
 - (void)setResults:(id)arg1;
 - (void)setWeb_fbq:(id)arg1;
 - (id)sha1:(id)arg1;

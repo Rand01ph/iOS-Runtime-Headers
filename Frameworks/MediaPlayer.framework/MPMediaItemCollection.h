@@ -19,6 +19,7 @@
 
 // Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 
++ (id)artworkCatalogCachePropertiesForGroupingType:(int)arg1;
 + (id)collectionWithItems:(id)arg1;
 + (id)representativePersistentIDPropertyForGroupingType:(int)arg1;
 + (id)sortTitlePropertyForGroupingType:(int)arg1;
@@ -28,6 +29,7 @@
 - (void).cxx_destruct;
 - (BOOL)MPSD_hasDownloadableItem;
 - (BOOL)MPSD_hasDownloadingItem;
+- (id)_artworkCatalogRepresentativeItem;
 - (id)albumArtistArtworkCatalog;
 - (id)artistArtworkCatalog;
 - (id)artworkCatalog;
@@ -49,9 +51,13 @@
 
 // Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
 
-+ (void)registerSupportedCustomProperties;
++ (id)customPropertyHandlersCollection;
++ (void)registerSupportedCustomPropertiesWithHandlersCollection:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
+
++ (id)MPU_contentItemIdentifierCollectionPropertiesForGroupingType:(int)arg1;
++ (void)_MPU_getContentItemIdentifierCollectionItemType:(unsigned int*)arg1 storeAdamIDProperty:(id*)arg2 forGroupingType:(int)arg3;
 
 - (id)MPU_contentItemIdentifierCollection;
 

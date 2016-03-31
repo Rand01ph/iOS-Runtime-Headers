@@ -3,6 +3,7 @@
  */
 
 @interface __NSCFURLLocalStreamTask : NSURLSessionTask {
+    NSData *_TCPConnectionMetadata;
     NSMutableArray *_afterConnectQueue;
     BOOL _betterRouteDiscovered;
     NSString *_boundInterfaceIdentifier;
@@ -57,6 +58,7 @@
     double startTime;
 }
 
+@property (copy) NSData *_TCPConnectionMetadata;
 @property (readonly) BOOL _goneSecure;
 @property long long countOfBytesExpectedToReceive;
 @property long long countOfBytesExpectedToSend;
@@ -70,6 +72,7 @@
 @property (copy) NSString *taskDescription;
 @property unsigned int taskIdentifier;
 
+- (id)_TCPConnectionMetadata;
 - (id)_boundInterfaceIdentifier;
 - (struct __CFDictionary { }*)_copySocketStreamProperties;
 - (BOOL)_disallowCellular;
@@ -82,15 +85,17 @@
 - (id)_ledBellyServiceIdentifier;
 - (id)_legacySocketStreamProperties;
 - (int)_networkServiceType;
+- (void)_onSessionQueue_cleanupAndBreakCycles;
+- (void)_onSessionQueue_disavow;
 - (void)_onqueue_addBlockOp:(id /* block */)arg1 description:(const char *)arg2;
 - (void)_onqueue_addBlockOpAtHead:(id /* block */)arg1 description:(const char *)arg2;
+- (void)_onqueue_cancel;
 - (void)_onqueue_captureStreams;
 - (void)_onqueue_checkForCompletion;
 - (void)_onqueue_closeReadOp;
 - (void)_onqueue_closeWriteOp;
 - (void)_onqueue_dealWithSessionClientCertAuth:(int)arg1 credential:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)_onqueue_dealWithSessionTrustAuth:(int)arg1 credential:(id)arg2 completionHandler:(id /* block */)arg3;
-- (void)_onqueue_disavow;
 - (id)_onqueue_errorOrCancelError;
 - (void)_onqueue_ioTick;
 - (void)_onqueue_needClientCert:(id)arg1 completionHandler:(id /* block */)arg2;
@@ -119,10 +124,10 @@
 - (void)adjustConditionalConnectionProperties:(struct __CFDictionary { }*)arg1;
 - (void)cancel;
 - (void)captureStreams;
-- (void)cleanupAndBreakCycles;
 - (void)closeRead;
 - (void)closeWrite;
 - (long long)computeAdjustedPoolPriority;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (long long)countOfBytesExpectedToReceive;
 - (long long)countOfBytesExpectedToSend;
 - (long long)countOfBytesReceived;
@@ -149,6 +154,7 @@
 - (void)setState:(int)arg1;
 - (void)setTaskDescription:(id)arg1;
 - (void)setTaskIdentifier:(unsigned int)arg1;
+- (void)set_TCPConnectionMetadata:(id)arg1;
 - (void)set_boundInterfaceIdentifier:(id)arg1;
 - (void)set_disallowCellular:(BOOL)arg1;
 - (void)set_expectedWorkload:(long long)arg1;

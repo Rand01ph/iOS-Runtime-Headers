@@ -12,15 +12,17 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
-@property int style;
+@property (nonatomic) int style;
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (void)_configureViewsWithStyle:(int)arg1;
 - (id)_dimmingKnockoutBackgroundColorForBackdropStyle:(int)arg1;
 - (id)_filterForBackdropStyle:(int)arg1;
 - (id)_visualEffectForStyle:(int)arg1;
 - (float)cornerRadius;
 - (id)initWithStyle:(int)arg1;
+- (void)layoutSubviews;
 - (void)setAlpha:(float)arg1;
 - (void)setCornerRadius:(float)arg1;
 - (void)setHighlighted:(BOOL)arg1 animated:(BOOL)arg2;

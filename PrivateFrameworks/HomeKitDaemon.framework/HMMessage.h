@@ -21,6 +21,7 @@
 @property (nonatomic, readonly, copy) NSString *effectiveLocationBundleIdentifier;
 @property (getter=isEntitledForAPIAccess, nonatomic, readonly) BOOL entitledForAPIAccess;
 @property (getter=isEntitledForBackgroundMode, nonatomic, readonly) BOOL entitledForBackgroundMode;
+@property (getter=isEntitledForBridgeSPIAccess, nonatomic, readonly) BOOL entitledForBridgeSPIAccess;
 @property (getter=isEntitledForSPIAccess, nonatomic, readonly) BOOL entitledForSPIAccess;
 @property (getter=isEntitledMessage, nonatomic, readonly) BOOL entitledMessage;
 @property (nonatomic, readonly) NSUUID *identifier;
@@ -72,6 +73,7 @@
 - (BOOL)isAuthorizedForLocationAccess;
 - (BOOL)isEntitledForAPIAccess;
 - (BOOL)isEntitledForBackgroundMode;
+- (BOOL)isEntitledForBridgeSPIAccess;
 - (BOOL)isEntitledForSPIAccess;
 - (BOOL)isEntitledMessage;
 - (BOOL)isInternalMessage;

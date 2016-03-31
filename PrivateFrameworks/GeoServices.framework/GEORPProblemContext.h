@@ -3,14 +3,20 @@
  */
 
 @interface GEORPProblemContext : PBCodable <NSCopying> {
+    NSMutableArray *_autocompleteSuggestionLists;
     NSMutableArray *_auxiliaryControls;
     double _creationDate;
+    GEOABExperimentResponse *_currentAbAssignmentResponse;
+    GEORPCurrentEnvironmentManifestURLs *_currentEnvironmentManifestUrls;
+    int _deviceGmtOffset;
     NSMutableArray *_directionsRequests;
     NSMutableArray *_directionsResponses;
+    NSMutableArray *_directionsWaypointPlaceInfos;
     struct { 
         unsigned int sessionId : 1; 
         unsigned int creationDate : 1; 
         unsigned int originatingAuxiliaryControlIndex : 1; 
+        unsigned int deviceGmtOffset : 1; 
         unsigned int pinType : 1; 
     } _has;
     NSString *_lastSearchString;
@@ -30,11 +36,19 @@
     NSMutableArray *_visibleTileSets;
 }
 
+@property (nonatomic, retain) NSMutableArray *autocompleteSuggestionLists;
 @property (nonatomic, retain) NSMutableArray *auxiliaryControls;
 @property (nonatomic) double creationDate;
+@property (nonatomic, retain) GEOABExperimentResponse *currentAbAssignmentResponse;
+@property (nonatomic, retain) GEORPCurrentEnvironmentManifestURLs *currentEnvironmentManifestUrls;
+@property (nonatomic) int deviceGmtOffset;
 @property (nonatomic, retain) NSMutableArray *directionsRequests;
 @property (nonatomic, retain) NSMutableArray *directionsResponses;
+@property (nonatomic, retain) NSMutableArray *directionsWaypointPlaceInfos;
 @property (nonatomic) BOOL hasCreationDate;
+@property (nonatomic, readonly) BOOL hasCurrentAbAssignmentResponse;
+@property (nonatomic, readonly) BOOL hasCurrentEnvironmentManifestUrls;
+@property (nonatomic) BOOL hasDeviceGmtOffset;
 @property (nonatomic, readonly) BOOL hasLastSearchString;
 @property (nonatomic, readonly) BOOL hasLastUserTypedSearchString;
 @property (nonatomic, readonly) BOOL hasMapLocation;
@@ -59,22 +73,32 @@
 @property (nonatomic, retain) GEORPTransitLineTileInfo *transitLineTileInfo;
 @property (nonatomic, retain) NSMutableArray *visibleTileSets;
 
+- (void)addAutocompleteSuggestionList:(id)arg1;
 - (void)addAuxiliaryControl:(id)arg1;
 - (void)addDirectionsRequest:(id)arg1;
 - (void)addDirectionsResponse:(id)arg1;
+- (void)addDirectionsWaypointPlaceInfo:(id)arg1;
 - (void)addVisibleTileSet:(id)arg1;
+- (id)autocompleteSuggestionListAtIndex:(unsigned int)arg1;
+- (id)autocompleteSuggestionLists;
+- (unsigned int)autocompleteSuggestionListsCount;
 - (id)auxiliaryControlAtIndex:(unsigned int)arg1;
 - (id)auxiliaryControls;
 - (unsigned int)auxiliaryControlsCount;
+- (void)clearAutocompleteSuggestionLists;
 - (void)clearAuxiliaryControls;
 - (void)clearDirectionsRequests;
 - (void)clearDirectionsResponses;
+- (void)clearDirectionsWaypointPlaceInfos;
 - (void)clearVisibleTileSets;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (double)creationDate;
+- (id)currentAbAssignmentResponse;
+- (id)currentEnvironmentManifestUrls;
 - (void)dealloc;
 - (id)description;
+- (int)deviceGmtOffset;
 - (id)dictionaryRepresentation;
 - (id)directionsRequestAtIndex:(unsigned int)arg1;
 - (id)directionsRequests;
@@ -82,7 +106,13 @@
 - (id)directionsResponseAtIndex:(unsigned int)arg1;
 - (id)directionsResponses;
 - (unsigned int)directionsResponsesCount;
+- (id)directionsWaypointPlaceInfoAtIndex:(unsigned int)arg1;
+- (id)directionsWaypointPlaceInfos;
+- (unsigned int)directionsWaypointPlaceInfosCount;
 - (BOOL)hasCreationDate;
+- (BOOL)hasCurrentAbAssignmentResponse;
+- (BOOL)hasCurrentEnvironmentManifestUrls;
+- (BOOL)hasDeviceGmtOffset;
 - (BOOL)hasLastSearchString;
 - (BOOL)hasLastUserTypedSearchString;
 - (BOOL)hasMapLocation;
@@ -107,11 +137,17 @@
 - (id)placeInfo;
 - (BOOL)readFrom:(id)arg1;
 - (struct { unsigned long long x1; unsigned long long x2; })sessionId;
+- (void)setAutocompleteSuggestionLists:(id)arg1;
 - (void)setAuxiliaryControls:(id)arg1;
 - (void)setCreationDate:(double)arg1;
+- (void)setCurrentAbAssignmentResponse:(id)arg1;
+- (void)setCurrentEnvironmentManifestUrls:(id)arg1;
+- (void)setDeviceGmtOffset:(int)arg1;
 - (void)setDirectionsRequests:(id)arg1;
 - (void)setDirectionsResponses:(id)arg1;
+- (void)setDirectionsWaypointPlaceInfos:(id)arg1;
 - (void)setHasCreationDate:(BOOL)arg1;
+- (void)setHasDeviceGmtOffset:(BOOL)arg1;
 - (void)setHasOriginatingAuxiliaryControlIndex:(BOOL)arg1;
 - (void)setHasPinType:(BOOL)arg1;
 - (void)setHasSessionId:(BOOL)arg1;

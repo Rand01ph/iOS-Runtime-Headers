@@ -118,6 +118,7 @@
 - (BOOL)_createSharedLocalContainer:(id)arg1 ownerName:(id)arg2;
 - (BOOL)_deleteLocalContainer:(id)arg1;
 - (BOOL)_dumpContainer:(id)arg1 toContext:(id)arg2 error:(id*)arg3;
+- (void)_dumpContainerBlockedState:(id)arg1 toContext:(id)arg2;
 - (BOOL)_dumpContainerStatus:(id)arg1 toContext:(id)arg2 error:(id*)arg3;
 - (void)_loadContainersFromDisk;
 - (id)_loadedContainers;
@@ -212,7 +213,6 @@
 - (BOOL)openWithError:(id*)arg1;
 - (id)operationFailureThrottle;
 - (id)ownerIdentityForKey:(id)arg1;
-- (id)ownerIdentityForName:(id)arg1;
 - (id)ownerIdentityForName:(id)arg1 db:(id)arg2;
 - (id)ownerKeyForName:(id)arg1 db:(id)arg2;
 - (id)ownerNameForKey:(id)arg1 db:(id)arg2;

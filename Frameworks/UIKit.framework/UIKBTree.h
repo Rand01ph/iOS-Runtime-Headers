@@ -51,6 +51,7 @@
 - (void)cacheKey:(id)arg1;
 - (id)cacheSecondaryDisplayString;
 - (id)cachedKeysByKeyName:(id)arg1;
+- (void)centerKeys:(id)arg1 inRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 scale:(float)arg3;
 - (void)clearTransientCaches;
 - (int)clipCorners;
 - (id)componentName;
@@ -58,6 +59,7 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
+- (BOOL)diacriticForwardCompose;
 - (BOOL)disabled;
 - (BOOL)disablesEdgeSwipe;
 - (int)displayRowHint;
@@ -111,6 +113,7 @@
 - (id)keysByKeyName:(id)arg1;
 - (id)keysForMergeConditions;
 - (id)keysOrderedByPosition;
+- (id)keysOrderedByPositionRTL;
 - (id)keysOrderedByPositionWithoutZip;
 - (id)keysWithString:(id)arg1;
 - (id)layoutName;
@@ -124,6 +127,7 @@
 - (BOOL)modifiesKeyplane;
 - (id)name;
 - (id)nameFromAttributes;
+- (struct CGPoint { float x1; float x2; })navigationPointOfKey;
 - (BOOL)noLanguageIndicator;
 - (BOOL)notUseCandidateSelection;
 - (id)numberForProperty:(id)arg1;

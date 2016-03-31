@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface NSData : NSObject <CKRecordValue, NSCopying, NSMutableCopying, NSSecureCoding, PQLValuable, TSPSplitableData>
+@interface NSData : NSObject <CKDParsedObject, CKRecordValue, NSCopying, NSMutableCopying, NSSecureCoding, PQLValuable, TSPSplitableData>
 
 @property (nonatomic, readonly) NSData *SHA1Data;
 @property (nonatomic, readonly) NSString *SHA1HexString;
@@ -163,6 +163,17 @@
 
 - (id)afui_dataByCompressingWithGzip;
 
+// Image: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
+
+- (id)ak_hexString;
+
+// Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
+
++ (id)bs_dataWithVMAllocatedBytes:(const void*)arg1 length:(unsigned int)arg2;
+
+- (void*)bs_bytesForMIG;
+- (unsigned int)bs_lengthForMIG;
+
 // Image: /System/Library/PrivateFrameworks/BulletinDistributorCompanion.framework/BulletinDistributorCompanion
 
 - (void)MD5:(unsigned char)arg1;
@@ -173,7 +184,7 @@
 
 // Image: /System/Library/PrivateFrameworks/CertInfo.framework/CertInfo
 
-- (id)hexString;
+- (id)CertUIHexString;
 
 // Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
 
@@ -187,8 +198,14 @@
 - (BOOL)brc_signatureIsPendingPlaceHolder;
 - (BOOL)brc_signatureIsValid;
 
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)_CKLogToFileHandle:(id)arg1 atDepth:(int)arg2;
+
 // Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
 
+- (id)cplQueryCursorDescription;
+- (id)cplQueryCursorSimpleDescription;
 - (id)cplSyncAnchorDescription;
 - (id)cplSyncAnchorSimpleDescription;
 - (id)initWithCPLArchiver:(id)arg1;
@@ -279,6 +296,7 @@
 
 // Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
+- (id)_geo_MD5Hash;
 - (id)_geo_newXPCData;
 - (id)_geo_uppercaseMD5HashString;
 
@@ -340,6 +358,11 @@
 - (id)MCBase64String;
 - (id)MCHexString;
 - (id)MCInitWithBase64String:(id)arg1;
+- (BOOL)MCSCWriteToFile:(id)arg1 atomically:(BOOL)arg2;
+- (BOOL)MCSCWriteToFile:(id)arg1 atomically:(BOOL)arg2 error:(id*)arg3;
+- (BOOL)MCSCWriteToFile:(id)arg1 atomically:(BOOL)arg2 mode:(unsigned short)arg3 error:(id*)arg4;
+- (BOOL)MCSCWriteToURL:(id)arg1 atomically:(BOOL)arg2 error:(id*)arg3;
+- (BOOL)MCSCWriteToURL:(id)arg1 atomically:(BOOL)arg2 mode:(unsigned short)arg3 error:(id*)arg4;
 - (id)MCSHA1Hash;
 
 // Image: /System/Library/PrivateFrameworks/MobileBackup.framework/MobileBackup
@@ -361,6 +384,7 @@
 // Image: /System/Library/PrivateFrameworks/NanoResourceGrabber.framework/NanoResourceGrabber
 
 - (void)MD5:(unsigned char)arg1;
+- (id)hexString;
 
 // Image: /System/Library/PrivateFrameworks/Notes.framework/Notes
 
@@ -368,8 +392,16 @@
 
 // Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
 
++ (id)keyWithUserPassphrase:(id)arg1 salt:(id)arg2 iterationCount:(unsigned int)arg3 error:(id*)arg4;
++ (id)random128BitData:(id*)arg1;
++ (id)randomDataOfLength:(unsigned long)arg1 error:(id*)arg2;
+
 - (id)TT_gzipDeflate;
 - (id)TT_gzipInflate;
+- (id)decryptedDataWithKey:(id)arg1 tag:(id)arg2 initialVector:(id)arg3 error:(id*)arg4;
+- (id)encryptedDataWithKey:(id)arg1 tag:(id*)arg2 initialVector:(id*)arg3 error:(id*)arg4;
+- (id)unwrapWithKey:(id)arg1 error:(id*)arg2;
+- (id)wrapWithKey:(id)arg1 error:(id*)arg2;
 
 // Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
 
@@ -436,6 +468,10 @@
 - (id)sha1Hash;
 - (id)stringWithEncoding:(unsigned int)arg1;
 
+// Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+
+- (id)sb_hexadecimalEncodedString;
+
 // Image: /System/Library/PrivateFrameworks/StoreBookkeeper.framework/StoreBookkeeper
 
 + (id)SBKStringByMD5HashingString:(id)arg1;
@@ -464,7 +500,19 @@
 
 // Image: /System/Library/PrivateFrameworks/WelcomeKitCore.framework/WelcomeKitCore
 
++ (id)wl_dataFromHexEncodedData:(id)arg1;
++ (id)wl_dataFromHexEncodedString:(id)arg1;
++ (id)wl_hmacSHA256DataForData:(id)arg1 key:(id)arg2;
++ (id)wl_lengthPrefixedBlobSequenceFromDataArray:(id)arg1;
+
+- (id)wl_arrayOfDataFromLengthPrefixedBlobSequenceWithExpectedCount:(unsigned int)arg1;
+- (BOOL)wl_blobIsComplete;
+- (id)wl_dataFromLengthPrefixedBlob;
+- (id)wl_hexEncodedData;
+- (id)wl_hexEncodedString;
+- (id)wl_lengthPrefixedBlob;
 - (id)wl_subdataWithRangeExcludingTrailingCrnl:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
+- (id)wl_utf8String;
 
 // Image: /System/Library/PrivateFrameworks/YouTube.framework/YouTube
 

@@ -33,13 +33,14 @@
 @property (readonly) unsigned int hash;
 @property (nonatomic) double heading;
 @property (nonatomic) double headingAccuracy;
+@property (nonatomic, readonly) CLLocation *lastLocation;
 @property (nonatomic, readonly) double locationAccuracy;
 @property (nonatomic) float maxRadiusToShowAccuracyRing;
 @property (nonatomic) float opacity;
 @property (nonatomic) double presentationCourse;
 @property (nonatomic) BOOL shouldDisplayHeading;
 @property (nonatomic) BOOL shouldDisplayInaccurateHeading;
-@property (getter=isStale, nonatomic, readonly) BOOL stale;
+@property (getter=isStale, nonatomic) BOOL stale;
 @property (readonly) Class superclass;
 @property (nonatomic) int zoomDirection;
 
@@ -54,6 +55,7 @@
 - (id)_baseLayer;
 - (struct UIImage { Class x1; }*)_headingImageForAccuracy:(double)arg1 anchorPoint:(struct CGPoint { float x1; float x2; }*)arg2;
 - (BOOL)_hideLargeAccuracyRing;
+- (BOOL)_isLocationStale:(id)arg1;
 - (id)_layerToMatchAccuracyRing;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_mapkit_visibleRect;
 - (void)_pausePulse;
@@ -85,6 +87,7 @@
 - (id)initWithAnnotation:(id)arg1 reuseIdentifier:(id)arg2;
 - (BOOL)isEffectsEnabled;
 - (BOOL)isStale;
+- (id)lastLocation;
 - (void)layoutSubviews;
 - (double)locationAccuracy;
 - (void)locationManagerFailedToUpdateLocation;
@@ -106,6 +109,7 @@
 - (void)setSelected:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setShouldDisplayHeading:(BOOL)arg1;
 - (void)setShouldDisplayInaccurateHeading:(BOOL)arg1;
+- (void)setStale:(BOOL)arg1;
 - (void)setZoomDirection:(int)arg1;
 - (void)setZoomDirection:(int)arg1 deltaScale:(float)arg2;
 - (BOOL)shouldDisplayHeading;

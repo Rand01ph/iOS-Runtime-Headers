@@ -50,6 +50,7 @@
 @property (nonatomic) <MusicMediaDetailSplitViewControllerDelegate> *mediaSplitViewControllerDelegate;
 @property (nonatomic, readonly) int presentationSource;
 @property (nonatomic) int productDescriptionTextStyle;
+@property (nonatomic) long long prominentTrackStoreID;
 @property (nonatomic, retain) UIViewController *relatedContentViewController;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) <MusicEntityProviding> *tracklistEntityProvider;
@@ -64,6 +65,7 @@
 - (id)_contextualActionsOverrideTracklistEntityProvider;
 - (id)_loadProductHeaderLockupContentDescriptor;
 - (id)_loadProductTracklistTableViewConfigurationWithTracklistEntityProvider:(id)arg1;
+- (void)_prepareToCommitEditingWithCompletionHandler:(id /* block */)arg1;
 - (id)_productAdditionalMetadataViewController;
 - (void)_reloadContainerEntityValueContextProperties;
 - (void)_reloadVerticalScrollingContainerItems;
@@ -92,6 +94,7 @@
 - (void)productAdditionalMetadataViewControllerDidFinishContentHeightAnimation:(id)arg1;
 - (void)productAdditionalMetadataViewControllerWillBeginContentHeightAnimation:(id)arg1;
 - (int)productDescriptionTextStyle;
+- (long long)prominentTrackStoreID;
 - (id)relatedContentViewController;
 - (void)setClientContext:(id)arg1;
 - (void)setEditableComponents:(unsigned int)arg1;
@@ -102,6 +105,7 @@
 - (void)setMediaDetailTintInformation:(id)arg1;
 - (void)setMediaSplitViewControllerDelegate:(id)arg1;
 - (void)setProductDescriptionTextStyle:(int)arg1;
+- (void)setProminentTrackStoreID:(long long)arg1;
 - (void)setRelatedContentViewController:(id)arg1;
 - (void)setTrailingSeparatorInsetFollowsLayoutInsets:(BOOL)arg1;
 - (id)tracklistEntityProvider;

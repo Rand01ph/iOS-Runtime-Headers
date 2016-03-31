@@ -23,6 +23,7 @@
     BOOL _storeSearchViewIsVisible;
     BOOL _storeSearchViewNeedsChangeUponAppearance;
     BOOL _storeSearchViewNeedsSubmitUponAppearance;
+    NSArray *_titleViewPaletteConstraints;
 }
 
 @property (nonatomic, retain) SKUIClientContext *clientContext;
@@ -45,6 +46,7 @@
 
 - (void).cxx_destruct;
 - (BOOL)_allowsLocalSearchOnly;
+- (void)_applyConstraints;
 - (void)_attachPaletteIfNecessary;
 - (void)_configureNavigationBar;
 - (void)_detachPalette;
@@ -54,7 +56,7 @@
 - (void)_handleCanShowSubscriptionContentDidChangeNotification:(id)arg1;
 - (void)_handleCancelButtonPressed;
 - (void)_recordSearchRecent:(id)arg1;
-- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_searchSegmentedControlContentEdgeInsets;
+- (void)_removeConstraints;
 - (id)_storeSearchSegmentTitle;
 - (void)_updateForStoreContentAvailabilityChange;
 - (id)animationControllerForDismissedController:(id)arg1;

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface NSDate : NSObject <CKRecordValue, NSCopying, NSSecureCoding, PQLValuable, TSCHChartGridValue>
+@interface NSDate : NSObject <CKDParsedObject, CKRecordValue, NSCopying, NSSecureCoding, PQLValuable, TSCHChartGridValue>
 
 @property (nonatomic, readonly) NSString *briefFormattedDate;
 @property (nonatomic, readonly) int chartGridValueType;
@@ -66,9 +66,9 @@
 
 - (id)dateForDayInTimeZone:(id)arg1;
 - (id)dateForDayInTimeZone:(id)arg1 fromTimeZone:(id)arg2;
-- (id)dateForEndOfDayInTimeZone:(id)arg1;
 - (id)dateForEndOfDayInTimeZone:(id)arg1 fromTimeZone:(id)arg2;
 - (id)dateInTimeZone:(id)arg1 fromTimeZone:(id)arg2;
+- (id)ek_ios_dateForEndOfDayInTimeZone:(id)arg1;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
@@ -86,8 +86,16 @@
 - (id)initWithCoder:(id)arg1;
 - (id)replacementObjectForPortCoder:(id)arg1;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
+- (BOOL)hk_isAfterDate:(id)arg1;
+- (BOOL)hk_isBeforeDate:(id)arg1;
+
 // Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
 
++ (id)currentTimeDescriptionInIS08601;
++ (unsigned char)dayOfTheWeek;
++ (id)iso8601dateFromString:(id)arg1;
 + (id)timeIntervalDescription:(double)arg1;
 
 - (id)localTimeDescription;
@@ -228,6 +236,18 @@
 
 - (BOOL)isSameDayAsDate:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
++ (id)cat_RFC3339Formatters;
++ (id)cat_dateWithInternetTimeString:(id)arg1;
++ (id)cat_dateWithObject:(id)arg1;
+
+- (id)cat_internetTimeString;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)_CKLogToFileHandle:(id)arg1 atDepth:(int)arg2;
+
 // Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
 
 - (id)initWithCPLArchiver:(id)arg1;
@@ -242,6 +262,9 @@
 
 // Image: /System/Library/PrivateFrameworks/CoreHAP.framework/CoreHAP
 
++ (id)currentTimeDescriptionInIS08601;
++ (unsigned char)dayOfTheWeek;
++ (id)iso8601dateFromString:(id)arg1;
 + (id)timeIntervalDescription:(double)arg1;
 
 - (id)localTimeDescription;
@@ -280,7 +303,9 @@
 - (double)geo_julianDay;
 - (double)geo_julianEphemerisDay;
 
-// Image: /System/Library/PrivateFrameworks/HealthKitUI.framework/HealthKitUI
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
++ (id)hk_minimumDateForBirthDateWithCalendar:(id)arg1;
 
 - (BOOL)hk_animatable;
 - (id)hk_dateWithTruncatedSecond;
@@ -294,6 +319,9 @@
 
 + (id)mf_copyDateInCommonFormatsWithString:(id)arg1;
 + (id)mf_copyLenientDateInCommonFormatsWithString:(id)arg1;
+
+- (BOOL)mf_isEarlierThanDate:(id)arg1;
+- (BOOL)mf_isLaterThanDate:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/Message.framework/Message
 

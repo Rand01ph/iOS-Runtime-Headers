@@ -6,6 +6,7 @@
     BOOL _autoDownloadAllowableForCellular;
     BOOL _disableAppDemotion;
     BOOL _disableCDLevel4;
+    BOOL _disableIntallTonight;
     BOOL _disableSiriVoiceDeletion;
     SUDocumentation *_documentation;
     BOOL _downloadAllowableForCellular;
@@ -20,6 +21,7 @@
     NSString *_productSystemName;
     NSString *_productVersion;
     NSString *_publisher;
+    NSString *_releaseType;
     BOOL _streamingZipCapable;
     NSDictionary *_systemPartitionPadding;
     unsigned long long _unarchiveSize;
@@ -29,6 +31,7 @@
 @property (nonatomic) BOOL autoDownloadAllowableForCellular;
 @property (getter=appDemotionDisabled, setter=_setDisableAppDemotion:, nonatomic) BOOL disableAppDemotion;
 @property (getter=cdLevel4Disabled, setter=_setDisableCDLevel4:, nonatomic) BOOL disableCDLevel4;
+@property (getter=installTonightDisabled, setter=_setDisableInstallTonight:, nonatomic) BOOL disableInstallTonight;
 @property (getter=siriVoiceDeletionDisabled, setter=_setDisableSiriVoiceDeletion:, nonatomic) BOOL disableSiriVoiceDeletion;
 @property (nonatomic, retain) SUDocumentation *documentation;
 @property (nonatomic) unsigned long long downloadSize;
@@ -41,6 +44,7 @@
 @property (nonatomic, retain) NSString *productSystemName;
 @property (nonatomic, retain) NSString *productVersion;
 @property (nonatomic, retain) NSString *publisher;
+@property (nonatomic, retain) NSString *releaseType;
 @property (getter=_isStreamingZipCapable, setter=_setStreamingZipCapable:, nonatomic) BOOL streamingZipCapable;
 @property (nonatomic, retain) NSDictionary *systemPartitionPadding;
 @property (getter=_unarchiveSize, setter=_setUnarchiveSize:, nonatomic) unsigned long long unarchiveSize;
@@ -54,6 +58,7 @@
 - (unsigned long long)_msuPrepareSize;
 - (void)_setDisableAppDemotion:(BOOL)arg1;
 - (void)_setDisableCDLevel4:(BOOL)arg1;
+- (void)_setDisableInstallTonight:(BOOL)arg1;
 - (void)_setDisableSiriVoiceDeletion:(BOOL)arg1;
 - (void)_setMsuPrepareSize:(unsigned long long)arg1;
 - (void)_setStreamingZipCapable:(BOOL)arg1;
@@ -72,6 +77,7 @@
 - (id)humanReadableUpdateName;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)installTonightDisabled;
 - (unsigned long long)installationSize;
 - (BOOL)isDownloadable;
 - (BOOL)isDownloadableOverCellular;
@@ -83,6 +89,7 @@
 - (id)productSystemName;
 - (id)productVersion;
 - (id)publisher;
+- (id)releaseType;
 - (void)setAutoDownloadAllowableForCellular:(BOOL)arg1;
 - (void)setDocumentation:(id)arg1;
 - (void)setDownloadSize:(unsigned long long)arg1;
@@ -94,6 +101,7 @@
 - (void)setProductSystemName:(id)arg1;
 - (void)setProductVersion:(id)arg1;
 - (void)setPublisher:(id)arg1;
+- (void)setReleaseType:(id)arg1;
 - (void)setSystemPartitionPadding:(id)arg1;
 - (void)setUpdateType:(int)arg1;
 - (BOOL)siriVoiceDeletionDisabled;

@@ -2,13 +2,13 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSNumber : NSValue <CKRecordValue, PQLValuable, TSCHChartGridValue, TSDMixing>
+@interface NSNumber : NSValue <CKDParsedObject, CKRecordValue, PQLValuable, TSCHChartGridValue, TSDMixing>
 
 @property (readonly) BOOL boolValue;
 @property (nonatomic, readonly) NSNumber *brc_documentID;
 @property (nonatomic, readonly) NSNumber *brc_folderID;
 @property (nonatomic, readonly) BOOL brc_isDocumentID;
-@property (nonatomic, readonly) BOOL brc_isFolderID;
+@property (nonatomic, readonly) BOOL brc_isFolderOrAliasID;
 @property (nonatomic, readonly) unsigned long long brc_rawID;
 @property (readonly) BOOL charValue;
 @property (nonatomic, readonly) int chartGridValueType;
@@ -134,6 +134,10 @@
 - (id)CA_roundToIntegerFromValue:(id)arg1;
 - (void)encodeWithCAMLWriter:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
++ (id)cat_numberWithObject:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
 
 - (id)__ck_localizedString;
@@ -142,13 +146,17 @@
 
 + (id)brc_fileObjectIDForURL:(id)arg1 allocateDocID:(BOOL)arg2;
 + (id)brc_fileObjectIDWithDocumentID:(unsigned int)arg1;
-+ (id)brc_fileObjectIDWithFolderID:(unsigned long long)arg1;
++ (id)brc_fileObjectIDWithFolderOrAliasID:(unsigned long long)arg1;
 
 - (id)brc_documentID;
 - (id)brc_folderID;
 - (BOOL)brc_isDocumentID;
-- (BOOL)brc_isFolderID;
+- (BOOL)brc_isFolderOrAliasID;
 - (unsigned long long)brc_rawID;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)_CKLogToFileHandle:(id)arg1 atDepth:(int)arg2;
 
 // Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
 
@@ -183,7 +191,7 @@
 
 - (BOOL)hk_hasFloatingPointValue;
 
-// Image: /System/Library/PrivateFrameworks/HealthKitUI.framework/HealthKitUI
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
 
 - (BOOL)hk_animatable;
 - (id)hk_midPointToValue:(id)arg1 percentage:(float)arg2;

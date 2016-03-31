@@ -75,6 +75,7 @@
 - (void)isMediaPlayingForApp:(id)arg1 completionHandler:(id /* block */)arg2;
 - (BOOL)isMultiTaskingActive;
 - (BOOL)isNotificationCenterVisible;
+- (BOOL)isNowPlayingUIVisible;
 - (BOOL)isOrientationLocked;
 - (BOOL)isPointInsideAccessibilityInspector:(id)arg1;
 - (BOOL)isPurpleBuddyAppFrontmost;
@@ -87,6 +88,7 @@
 - (BOOL)isSideSwitcherVisible;
 - (BOOL)isSiriTalkingOrListening;
 - (BOOL)isSiriVisible;
+- (BOOL)isSoftwareUpdateUIVisible;
 - (BOOL)isSpeakThisTemporarilyDisabled;
 - (BOOL)isSyncingRestoringResettingOrUpdating;
 - (BOOL)isSystemAppFrontmost;
@@ -137,6 +139,7 @@
 - (void)showControlCenter:(BOOL)arg1;
 - (void)showNotificationCenter;
 - (BOOL)showNotificationCenter:(BOOL)arg1;
+- (void)simulateEdgePressHaptics;
 - (void)startHearingAidServer;
 - (void)systemAppInfoWithQuery:(unsigned int)arg1 completion:(id /* block */)arg2;
 - (void)takeScreenshot;

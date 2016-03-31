@@ -14,9 +14,12 @@
 + (id)sharedPreferences;
 
 - (void).cxx_destruct;
+- (id)_alternativeLocaleLanguageFor:(id)arg1;
+- (id)_fallbackLocaleLanguageFor:(id)arg1;
 - (void)_internalPreferencesDidChangeExternally;
 - (void)_languageCodeDidChangeExternally;
-- (id)_localeMappedLanguageFor:(id)arg1;
+- (id)_mappedLanguageCodeArrayFor:(id)arg1;
+- (id)_originalOrReplacementLanguageCodeFor:(id)arg1;
 - (void)_ouputVoiceDidChangeExternally;
 - (void)_preferencesDidChangeExternally;
 - (void)_registerForInteralPrefs;
@@ -27,6 +30,7 @@
 - (void)_setDictationIsEnabledLocal:(BOOL)arg1;
 - (void)_setLoggingDefaultValue:(id)arg1 forKey:(id)arg2;
 - (BOOL)assistantIsEnabled;
+- (BOOL)assistantLanguageForceRTL;
 - (id)bestSupportedLanguageCodeForLanguageCode:(id)arg1;
 - (int)bugReportingMode;
 - (void)dealloc;
@@ -38,12 +42,16 @@
 - (int)handsFreeMode;
 - (BOOL)ignoreServerManualEndpointingThreshold;
 - (id)init;
+- (BOOL)isCurrentLocaleNativelySupported;
+- (BOOL)isLocaleIdentifierNativelySupported:(id)arg1;
 - (id)languageCode;
 - (id)manualEndpointingThreshold;
 - (BOOL)offlineDictationOverride;
 - (id)outputVoice;
+- (void)resetSessionLanguage;
 - (BOOL)respectsSystemMute;
 - (void)setAssistantIsEnabled:(BOOL)arg1;
+- (void)setAssistantLanguageForceRTL:(BOOL)arg1;
 - (void)setBugReportingMode:(int)arg1;
 - (void)setDebugButtonIsEnabled:(BOOL)arg1;
 - (void)setDictationIsEnabled:(BOOL)arg1;
@@ -58,10 +66,12 @@
 - (void)setRespectsSystemMute:(BOOL)arg1;
 - (void)setShowsHoldToTalkIndicator:(BOOL)arg1;
 - (void)setStreamingDictationEnabled:(BOOL)arg1;
+- (void)setSuppressDictationOptIn:(BOOL)arg1;
 - (void)setUseDeviceSpeakerForTTS:(int)arg1;
 - (void)setValue:(id)arg1 forSessionContextKey:(id)arg2;
 - (BOOL)showsHoldToTalkIndicator;
 - (BOOL)streamingDictationEnabled;
+- (BOOL)suppressDictationOptIn;
 - (void)synchronize;
 - (void)synchronizeVoiceServicesLanguageCode;
 - (int)useDeviceSpeakerForTTS;

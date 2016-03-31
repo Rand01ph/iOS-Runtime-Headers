@@ -2,7 +2,8 @@
    Image: /System/Library/PrivateFrameworks/PowerlogCore.framework/PowerlogCore
  */
 
-@interface PLCoreStorage : NSObject {
+@interface PLCoreStorage : NSObject <UMUserSwitchStakeholder> {
+    PLXPCResponderOperatorComposition *_archivesResponder;
     PLSQLiteConnection *_connection;
     PLKQueue *_crashReporterKQueue;
     PLNSNotificationOperatorComposition *_dailyTaskNotification;
@@ -19,14 +20,19 @@
     BOOL _storageLocked;
     PLStorageOperator *_storageOperator;
     BOOL _storageReady;
+    NSString *_uuid;
 }
 
+@property (retain) PLXPCResponderOperatorComposition *archivesResponder;
 @property (retain) PLSQLiteConnection *connection;
 @property (retain) PLKQueue *crashReporterKQueue;
 @property (retain) PLNSNotificationOperatorComposition *dailyTaskNotification;
 @property (retain) PLTimer *dailyTaskTimer;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (retain) PLCFNotificationOperatorComposition *flushCachesCFNotification;
 @property (retain) PLTimer *flushCachesTimer;
+@property (readonly) unsigned int hash;
 @property (retain) PLCFNotificationOperatorComposition *keybagFirstUnlockNotification;
 @property (nonatomic, retain) NSString *mainDBInCRFolderUUIDString;
 @property (retain) PLTimer *periodicCheckpointTimer;
@@ -37,6 +43,8 @@
 @property (nonatomic) BOOL storageLocked;
 @property (retain) PLStorageOperator *storageOperator;
 @property BOOL storageReady;
+@property (readonly) Class superclass;
+@property (retain) NSString *uuid;
 
 + (id)allOperatorTablesToTrimConditionsForTrimDate:(id)arg1;
 + (void)logMessage:(id)arg1 fromFile:(id)arg2 fromFunction:(id)arg3 fromLineNumber:(long)arg4;
@@ -47,6 +55,7 @@
 - (void).cxx_destruct;
 - (void)_updateEntry:(id)arg1 withBlock:(id /* block */)arg2;
 - (id)aggregateEntriesForKey:(id)arg1 withBucketLength:(double)arg2 inTimeIntervalRange:(struct _PLTimeIntervalRange { double x1; double x2; })arg3;
+- (id)archivesResponder;
 - (void)blockingFlushCachesWithReason:(id)arg1;
 - (void)blockingFlushQueues:(id)arg1;
 - (void)blockingUpdateEntry:(id)arg1 withBlock:(id /* block */)arg2;
@@ -101,7 +110,6 @@
 - (void)loadDynamicValuesIntoEntry:(id)arg1;
 - (void)logMessage:(id)arg1 fromFile:(id)arg2 fromFunction:(id)arg3 fromLineNumber:(long)arg4;
 - (id)mainDBInCRFolderUUIDString;
-- (void)moveOldAnonFilesToCR;
 - (id)periodicCheckpointTimer;
 - (id)powerModelForOperatorName:(id)arg1;
 - (void)processEntriesForKey:(id)arg1 withProperties:(id)arg2 withBlock:(id /* block */)arg3;
@@ -116,6 +124,7 @@
 - (id)safeCopyInProgress;
 - (id)safeFileResponder;
 - (void)setAllNullValuesForEntryKey:(id)arg1 forKey:(id)arg2 toValue:(id)arg3 withFilters:(id)arg4;
+- (void)setArchivesResponder:(id)arg1;
 - (void)setConnection:(id)arg1;
 - (void)setCrashReporterKQueue:(id)arg1;
 - (void)setDailyTaskNotification:(id)arg1;
@@ -133,6 +142,7 @@
 - (void)setStorageLocked:(BOOL)arg1;
 - (void)setStorageOperator:(id)arg1;
 - (void)setStorageReady:(BOOL)arg1;
+- (void)setUuid:(id)arg1;
 - (void)setupArrayForTableName:(id)arg1 forColumnNamed:(id)arg2 withValueType:(short)arg3;
 - (void)setupCoveringIndexOnTable:(id)arg1 withColumns:(id)arg2;
 - (void)setupStorageForEntryKey:(id)arg1;
@@ -146,8 +156,10 @@
 - (id)storageOperator;
 - (BOOL)storageReady;
 - (void)updateEntry:(id)arg1 withBlock:(id /* block */)arg2;
+- (id)uuid;
 - (short)verifySchemaVersionOfTable:(id)arg1 matchesExpectedVersion:(double)arg2;
 - (id)whiteBlackListForOperatorName:(id)arg1;
+- (void)willSwitchUser;
 - (void)writeAggregateEntry:(id)arg1;
 - (void)writeEntries:(id)arg1 withCompletionBlock:(id /* block */)arg2;
 - (long long)writeEntry:(id)arg1;

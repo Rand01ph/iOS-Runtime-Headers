@@ -5,6 +5,8 @@
 @interface SPUtils : NSObject
 
 + (id)SPURLQueryAllowedCharacterSet;
++ (BOOL)appConduitIsInChargeOfInstallations;
++ (BOOL)appConduitIsInChargeOfInstallationsForDevice:(id)arg1;
 + (BOOL)appExtensionFirstUnlock;
 + (id)companionConnectionClientIdentifier:(BOOL)arg1;
 + (id)deserializeObject:(id)arg1;
@@ -13,6 +15,7 @@
 + (unsigned long long)folderSizeAtPath:(id)arg1 volumeBlockSize:(unsigned int)arg2;
 + (BOOL)isApplicationCompanionConnectionClientIdentifier:(id)arg1;
 + (BOOL)isRTL;
++ (BOOL)isRunningInF201DemoMode;
 + (BOOL)isRunningInF5DemoMode;
 + (id)localizedStringForSystemLanguage:(id)arg1 fromBundlePath:(id)arg2;
 + (id)machTime;

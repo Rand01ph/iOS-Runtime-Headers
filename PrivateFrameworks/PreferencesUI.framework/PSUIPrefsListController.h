@@ -72,6 +72,8 @@
 - (void)_reallyLoadThirdPartySpecifiersForProxies:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)_setAirplaneMode:(BOOL)arg1;
 - (void)_setupiCloudSpecifier:(id)arg1;
+- (void)_setupiCloudSpecifier:(id)arg1 withPrimaryAccount:(id)arg2;
+- (void)_setupiCloudSpecifierAsync:(id)arg1;
 - (BOOL)_showCarrier;
 - (void)_showControllerFromSpecifier:(id)arg1;
 - (void)_showDetailTargetDidChange:(id)arg1;
@@ -109,8 +111,9 @@
 - (id)init;
 - (void)insertMovedThirdPartySpecifiersAnimated:(BOOL)arg1;
 - (void)insertOrderedSpecifier:(id)arg1 animated:(BOOL)arg2;
+- (BOOL)isBundleIDHiddenDueToRestrictions:(id)arg1;
 - (BOOL)isHomeKitInUse;
-- (BOOL)isSpecifierIDHiddenDueToRestrictions:(id)arg1;
+- (BOOL)isSpecifierHiddenDueToRestrictions:(id)arg1;
 - (void)lazyLoadSpecialBundleForSpecifier:(id)arg1;
 - (void)loadPPTTestSpecifiers:(int)arg1;
 - (void)loadThirdPartySpecifierForBundleID:(id)arg1;

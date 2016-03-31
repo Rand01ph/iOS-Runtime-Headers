@@ -5,9 +5,9 @@
 
 @required
 
-- (NSURL *)appURLForIndexerContext:(ICSearchIndexerContext *)arg1;
 - (NSString *)contentInfoText;
-- (NSNumber *)integerId;
+- (NSDate *)dateForCurrentSortType;
+- (BOOL)isPasswordProtected;
 - (NSString *)noteAsPlainTextWithoutTitle;
 - (NSArray *)searchableContentKeyPaths;
 - (NSString *)title;

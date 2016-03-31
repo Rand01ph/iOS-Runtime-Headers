@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/VoiceTriggerUI.framework/VoiceTriggerUI
  */
 
-@interface VTUIEnrollTrainingViewController : UIViewController <AFUIDebugControllerDelegate, SUICFlamesViewDelegate, VTUIEnrollmentSetupIntroViewDelegate, VTUITrainingManagerDelegate> {
+@interface VTUIEnrollTrainingViewController : UIViewController <AFUIDebugControllerDelegate, AFUISiriLanguageDelegate, SUICFlamesViewDelegate, VTUIEnrollmentSetupIntroViewDelegate, VTUITrainingManagerDelegate> {
     int _AVVCRetryCount;
     float _audioRms;
     int _badMicRetryCount;
@@ -16,6 +16,7 @@
     SiriUIContentButton *_radarButton;
     UIButton *_radarExitButton;
     unsigned int _sessionId;
+    AFUISiriLanguage *_siriLanguage;
     UIButton *_skipButton;
     NSString *_spokenLanguageCode;
     UILabel *_statusLabel;
@@ -46,6 +47,7 @@
 - (void)_continueFromIntro:(id)arg1;
 - (void)_createTrainingManagerIfNeeded;
 - (void)_finishSiriSetup:(id)arg1;
+- (id)_getSetupModeString;
 - (void)_handleTrainingResultForNonRetryablePhraseWithStatus:(int)arg1;
 - (void)_handleTrainingResultForRetryablePhraseWithStatus:(int)arg1;
 - (void)_hideInstruction;
@@ -90,6 +92,7 @@
 - (float)audioRms;
 - (int)currentTrainingState;
 - (void)dealloc;
+- (void)debugController:(id)arg1 openURL:(id)arg2;
 - (void)debugController:(id)arg1 stateDidChangeWithAddViews:(id)arg2;
 - (void)debugController:(id)arg1 wantsDismissViewController:(id)arg2;
 - (void)debugController:(id)arg1 wantsPresentViewController:(id)arg2;
@@ -105,6 +108,7 @@
 - (void)setAudioRms:(float)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setHasRetriedTraining:(BOOL)arg1;
+- (void)siriLanguageSpokenLanguageCodeDidChange:(id)arg1;
 - (void)skipAssistant:(id)arg1;
 - (void)skipTraining:(id)arg1;
 - (id)trainingManager;

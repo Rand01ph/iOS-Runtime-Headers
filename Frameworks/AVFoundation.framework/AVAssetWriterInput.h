@@ -31,7 +31,6 @@
 
 + (id)assetWriterInputWithMediaType:(id)arg1 outputSettings:(id)arg2;
 + (id)assetWriterInputWithMediaType:(id)arg1 outputSettings:(id)arg2 sourceFormatHint:(struct opaqueCMFormatDescription { }*)arg3;
-+ (void)declareKeyPathDependenciesWithRegistry:(id)arg1;
 + (void)initialize;
 
 - (short)_alternateGroupID;
@@ -68,6 +67,7 @@
 - (BOOL)canPerformMultiplePasses;
 - (id)currentPassDescription;
 - (void)dealloc;
+- (void)declareKeyPathDependenciesWithRegistry:(id)arg1;
 - (id)description;
 - (BOOL)expectsMediaDataInRealTime;
 - (id)extendedLanguageTag;
@@ -111,7 +111,9 @@
 - (void)setPreferredVolume:(float)arg1;
 - (void)setSampleReferenceBaseURL:(id)arg1;
 - (void)setTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1;
+- (void)setWritesMediaDataToBeginningOfFile:(BOOL)arg1;
 - (const struct opaqueCMFormatDescription { }*)sourceFormatHint;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })transform;
+- (BOOL)writesMediaDataToBeginningOfFile;
 
 @end

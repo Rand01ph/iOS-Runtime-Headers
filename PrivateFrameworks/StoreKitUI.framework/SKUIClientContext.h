@@ -32,7 +32,10 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
+@property (getter=isManagedAppleID, nonatomic, readonly) BOOL managedAppleID;
 @property (nonatomic, copy) NSString *metricsConfigurationIdentifier;
+@property (nonatomic, readonly) Class moviePlayerViewControllerClass;
+@property (getter=isMultiUser, nonatomic, readonly) BOOL multiUser;
 @property (nonatomic, readonly) NSArray *navigationHistory;
 @property (nonatomic, copy) NSString *navigationHistoryPersistenceKey;
 @property (nonatomic, readonly) SSVPlatformContext *platformContext;
@@ -72,6 +75,8 @@
 - (id)documentViewControllerForTemplateViewElement:(id)arg1;
 - (void)getDefaultMetricsControllerWithCompletionBlock:(id /* block */)arg1;
 - (id)initWithConfigurationDictionary:(id)arg1;
+- (BOOL)isManagedAppleID;
+- (BOOL)isMultiUser;
 - (void)loadValueForConfigurationKey:(id)arg1 completionBlock:(id /* block */)arg2;
 - (id)localizedAlertWithError:(id)arg1;
 - (id)localizedStringForKey:(id)arg1;
@@ -79,6 +84,7 @@
 - (id)metricsConfigurationIdentifier;
 - (id)metricsPageContextForViewController:(id)arg1;
 - (id)modalDocumentViewControllerForDocument:(id)arg1 options:(id)arg2;
+- (Class)moviePlayerViewControllerClass;
 - (id)navigationHistory;
 - (id)navigationHistoryPersistenceKey;
 - (id)newLegacyStorePageViewControllerForURLResponse:(id)arg1;

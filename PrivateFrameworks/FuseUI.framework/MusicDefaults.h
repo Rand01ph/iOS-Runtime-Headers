@@ -13,7 +13,6 @@
 @property (getter=isGroupByAlbumArtistEnabled, nonatomic, readonly) BOOL groupByAlbumArtistEnabled;
 @property (nonatomic, readonly) BOOL hasSetVersionOfNoThanksOption;
 @property (nonatomic, readonly) BOOL hasSetVersionOfNotNowOption;
-@property (nonatomic) BOOL hasUserBeenNotifiedThatAudioBooksHaveMoved;
 @property (nonatomic) BOOL hasUserRequestedSubscriptionHidden;
 @property (getter=isInternalInstall, nonatomic) BOOL internalInstall;
 @property (nonatomic) BOOL lastEffectiveRadioExplicitTracksEnabled;
@@ -21,9 +20,12 @@
 @property (nonatomic, retain) NSNumber *lastKnownStoreAccountUniqueIdentifier;
 @property (nonatomic) BOOL lastKnownSupportsConnect;
 @property (nonatomic, copy) NSDictionary *lastKnownTabConfigurations;
+@property (nonatomic) int lastModifiedPlaylistID;
+@property (nonatomic, retain) NSDate *lastMyMusicSearchDate;
 @property (getter=isPinningEnabled, nonatomic, readonly) BOOL pinningEnabled;
 @property (nonatomic) unsigned int playbackSpeed;
 @property (nonatomic) BOOL playlistsOverviewShowsOnlyOfflinePlaylists;
+@property (nonatomic) float popularityIndicatorThreshold;
 @property (nonatomic) unsigned int repeatType;
 @property (nonatomic) BOOL searchShouldDefaultToMyMusic;
 @property (nonatomic, copy) NSString *selectedLibraryViewIdentifier;
@@ -34,8 +36,12 @@
 @property (getter=isSortByArtistEnabled, nonatomic, readonly) BOOL sortByArtistEnabled;
 @property (getter=isSoundCheckEnabled, nonatomic, readonly) BOOL soundCheckEnabled;
 @property (nonatomic, copy) NSArray *tabBarOrdering;
-@property (nonatomic) int versionOfNoThanksOptionWhenUserLastSawWelcomeScreen;
-@property (nonatomic) int versionOfNotNowOptionWhenUserLastSawWelcomeScreen;
+@property (nonatomic) int versionOfFormerFreeTrialWhenUserLastSawWelcomeScreen;
+@property (nonatomic) int versionOfNoThanksWhenUserLastSawWelcomeScreen;
+@property (nonatomic) int versionOfNotNowWhenUserLastSawWelcomeScreen;
+@property (nonatomic, retain) NSString *versionOfOSWhenFormerFreeTrialWelcomeScreenWasShown;
+@property (nonatomic, retain) NSString *versionOfOSWhenNoThanksWelcomeScreenWasShown;
+@property (nonatomic, retain) NSString *versionOfOSWhenNotNowWelcomeScreenWasShown;
 
 + (id)sharedDefaults;
 
@@ -45,7 +51,6 @@
 - (int)eqPreset;
 - (BOOL)hasSetVersionOfNoThanksOption;
 - (BOOL)hasSetVersionOfNotNowOption;
-- (BOOL)hasUserBeenNotifiedThatAudioBooksHaveMoved;
 - (BOOL)hasUserRequestedSubscriptionHidden;
 - (BOOL)isActivityContinuationEnabled;
 - (BOOL)isGeniusUserEnabled;
@@ -61,16 +66,18 @@
 - (id)lastKnownStoreAccountUniqueIdentifier;
 - (BOOL)lastKnownSupportsConnect;
 - (id)lastKnownTabConfigurations;
+- (int)lastModifiedPlaylistID;
+- (id)lastMyMusicSearchDate;
 - (void)migrateTabBarOrderingIfNeeded;
 - (unsigned int)playbackSpeed;
 - (BOOL)playlistsOverviewShowsOnlyOfflinePlaylists;
+- (float)popularityIndicatorThreshold;
 - (unsigned int)repeatType;
 - (BOOL)searchShouldDefaultToMyMusic;
 - (id)selectedLibraryViewIdentifier;
 - (id)selectedPlaylistsOverviewFilter;
 - (void)setDateWhenUserLastSawWelcomeScreen:(id)arg1;
 - (void)setGeniusUserEnabled:(BOOL)arg1;
-- (void)setHasUserBeenNotifiedThatAudioBooksHaveMoved:(BOOL)arg1;
 - (void)setHasUserRequestedSubscriptionHidden:(BOOL)arg1;
 - (void)setInternalInstall:(BOOL)arg1;
 - (void)setLastEffectiveRadioExplicitTracksEnabled:(BOOL)arg1;
@@ -78,8 +85,11 @@
 - (void)setLastKnownStoreAccountUniqueIdentifier:(id)arg1;
 - (void)setLastKnownSupportsConnect:(BOOL)arg1;
 - (void)setLastKnownTabConfigurations:(id)arg1;
+- (void)setLastModifiedPlaylistID:(int)arg1;
+- (void)setLastMyMusicSearchDate:(id)arg1;
 - (void)setPlaybackSpeed:(unsigned int)arg1;
 - (void)setPlaylistsOverviewShowsOnlyOfflinePlaylists:(BOOL)arg1;
+- (void)setPopularityIndicatorThreshold:(float)arg1;
 - (void)setRepeatType:(unsigned int)arg1;
 - (void)setSearchShouldDefaultToMyMusic:(BOOL)arg1;
 - (void)setSelectedLibraryViewIdentifier:(id)arg1;
@@ -87,11 +97,19 @@
 - (void)setShowCloudMediaEnabled:(BOOL)arg1;
 - (void)setShuffleType:(unsigned int)arg1;
 - (void)setTabBarOrdering:(id)arg1;
-- (void)setVersionOfNoThanksOptionWhenUserLastSawWelcomeScreen:(int)arg1;
-- (void)setVersionOfNotNowOptionWhenUserLastSawWelcomeScreen:(int)arg1;
+- (void)setVersionOfFormerFreeTrialWhenUserLastSawWelcomeScreen:(int)arg1;
+- (void)setVersionOfNoThanksWhenUserLastSawWelcomeScreen:(int)arg1;
+- (void)setVersionOfNotNowWhenUserLastSawWelcomeScreen:(int)arg1;
+- (void)setVersionOfOSWhenFormerFreeTrialWelcomeScreenWasShown:(id)arg1;
+- (void)setVersionOfOSWhenNoThanksWelcomeScreenWasShown:(id)arg1;
+- (void)setVersionOfOSWhenNotNowWelcomeScreenWasShown:(id)arg1;
 - (unsigned int)shuffleType;
 - (id)tabBarOrdering;
-- (int)versionOfNoThanksOptionWhenUserLastSawWelcomeScreen;
-- (int)versionOfNotNowOptionWhenUserLastSawWelcomeScreen;
+- (int)versionOfFormerFreeTrialWhenUserLastSawWelcomeScreen;
+- (int)versionOfNoThanksWhenUserLastSawWelcomeScreen;
+- (int)versionOfNotNowWhenUserLastSawWelcomeScreen;
+- (id)versionOfOSWhenFormerFreeTrialWelcomeScreenWasShown;
+- (id)versionOfOSWhenNoThanksWelcomeScreenWasShown;
+- (id)versionOfOSWhenNotNowWelcomeScreenWasShown;
 
 @end

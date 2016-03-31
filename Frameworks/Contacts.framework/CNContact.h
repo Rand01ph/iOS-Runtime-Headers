@@ -190,8 +190,10 @@
 + (id)predicateForContactsInGroupWithIdentifier:(id)arg1;
 + (id)predicateForContactsLinkedToContact:(id)arg1;
 + (id)predicateForContactsLinkedToContactWithIdentifier:(id)arg1;
++ (id)predicateForContactsMatchingEmailAddress:(id)arg1;
 + (id)predicateForContactsMatchingFullTextSearch:(id)arg1 containerIdentifiers:(id)arg2 groupIdentifiers:(id)arg3;
 + (id)predicateForContactsMatchingName:(id)arg1;
++ (id)predicateForContactsMatchingPhoneNumber:(id)arg1;
 + (id)predicateForContactsMatchingString:(id)arg1 accountIdentifier:(id)arg2 containerIdentifier:(id)arg3 groupIdentifier:(id)arg4;
 + (id)predicateForContactsWithIdentifiers:(id)arg1;
 + (id)predicateForLegacyIdentifier:(unsigned int)arg1;
@@ -369,8 +371,9 @@
 // Image: /System/Library/Frameworks/PassKit.framework/PassKit
 
 + (id)contactWithPkDictionary:(id)arg1;
++ (id)pkContactWithFirstName:(id)arg1 lastName:(id)arg2 district:(id)arg3 labeledValue:(id)arg4 property:(id)arg5;
++ (id)pkContactWithFirstName:(id)arg1 lastName:(id)arg2 district:(id)arg3 postalAddresses:(id)arg4 emailAddresses:(id)arg5 phoneNumbers:(id)arg6;
 + (id)pkContactWithFirstName:(id)arg1 lastName:(id)arg2 labeledValue:(id)arg3 property:(id)arg4;
-+ (id)pkContactWithFirstName:(id)arg1 lastName:(id)arg2 postalAddresses:(id)arg3 emailAddresses:(id)arg4 phoneNumbers:(id)arg5;
 + (id)pkContactWithNameFromContact:(id)arg1 labeledValue:(id)arg2 property:(id)arg3;
 + (id)pkPassbookRequiredKeys;
 
@@ -381,5 +384,9 @@
 - (id)pkSingleLineFormattedContactAddress;
 - (id)recentContact;
 - (void)setRecentContact:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/UserManagementUI.framework/UserManagementUI
+
++ (id)contactForUser:(id)arg1;
 
 @end

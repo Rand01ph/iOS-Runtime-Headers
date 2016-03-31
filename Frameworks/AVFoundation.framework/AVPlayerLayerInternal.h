@@ -3,6 +3,7 @@
  */
 
 @interface AVPlayerLayerInternal : NSObject {
+    NSSet *KVOInvokers;
     AVPlayer *_player;
     AVPlayerLayer *associatedPIPLayer;
     BOOL canDispatchOverrides;
@@ -17,6 +18,8 @@
     BOOL isReadyForDisplay;
     struct OpaqueFigSimpleMutex { } *isReadyForDisplayMutex;
     AVPlayerItem *itemMarkedReadyForDisplay;
+    BOOL lanczosDownscalingEnabled;
+    int lanczosDownscalingFactor;
     struct CGRect { 
         struct CGPoint { 
             float x; 

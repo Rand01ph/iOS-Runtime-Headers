@@ -3,20 +3,28 @@
  */
 
 @interface _ATXAppInstallMonitor : NSObject {
-    int _applicationsChangedNotificationToken;
-    NSObject<_ATXAppInstallMonitorDelegate> *_delegate;
+    _ATXAppInfoManager *_appInfoManager;
+    NSDictionary *_assetData;
+    NSObject<OS_dispatch_queue> *_installQueue;
+    id /* block */ _updateCompletionBlock;
 }
 
-@property (nonatomic) NSObject<_ATXAppInstallMonitorDelegate> *delegate;
-
 - (void).cxx_destruct;
-- (void)_cancelAnyExistingNotification;
+- (void)_handleInstallationOfApps:(id)arg1 andBackdate:(BOOL)arg2;
+- (void)_handleUninstallationOfApps:(id)arg1;
+- (void)_receivedInstallNotificationWithApps:(id)arg1 placeholderInstallNotification:(BOOL)arg2;
+- (void)_receivedUninstallNotificationWithApps:(id)arg1 placeholderUninstallNotification:(BOOL)arg2;
 - (void)dealloc;
-- (id)delegate;
-- (id)init;
-- (void)monitorApplicationsDirectory;
-- (void)setDelegate:(id)arg1;
+- (id)fetchAllAppsFromDatastore;
+- (id)fetchInstalledApps;
+- (id)initWithAppInfoManager:(id)arg1;
+- (void)noSyncUpdateWithWaitTime:(unsigned int)arg1 andBackdate:(BOOL)arg2;
+- (BOOL)recentlyRestoredBackupWithRestoreDate:(id)arg1 andTimeWindow:(unsigned int)arg2;
+- (id)removeIntersectionBetweenSet:(id)arg1 set:(id)arg2;
+- (void)setUpdateCompletionBlock:(id /* block */)arg1;
 - (void)start;
 - (void)stop;
+- (void)synchronousUpdateAndBackdate:(BOOL)arg1;
+- (void)synchronousUpdateWithUninstallWaitTime:(unsigned int)arg1 andBackdate:(BOOL)arg2;
 
 @end

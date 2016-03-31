@@ -8,10 +8,12 @@
     BOOL _didAddObservers;
     BOOL _didAddTrashObservers;
     ICFolder *_trashFolder;
+    ICSelectorDelayer *_trashFolderHiddenSelectorDelayer;
 }
 
 @property (nonatomic, retain) ICAccountProxy *accountProxy;
 @property (nonatomic) int accountType;
+@property (nonatomic, retain) NSData *cryptoVerifier;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, retain) ICFolder *defaultFolder;
 @property (readonly, copy) NSString *description;
@@ -31,14 +33,30 @@
 @property (nonatomic, retain) NSSet *serverChangeTokens;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) ICFolder *trashFolder;
+@property (nonatomic, retain) ICSelectorDelayer *trashFolderHiddenSelectorDelayer;
 @property (nonatomic, retain) NSString *userRecordName;
 
++ (id)accountWithIdentifier:(id)arg1 context:(id)arg2;
++ (id)accountsMatchingPredicate:(id)arg1 context:(id)arg2;
++ (id)accountsWithAccountType:(int)arg1 context:(id)arg2;
++ (id)allAccountsInContext:(id)arg1;
++ (id)allActiveAccountsInContext:(id)arg1;
 + (id)allCloudObjects;
++ (BOOL)clearAccountForAppleCloudKitTable;
++ (id)cloudKitAccountInContext:(id)arg1;
++ (id)cloudKitIfMigratedElseLocalAccountInContext:(id)arg1;
++ (id)defaultAccountInContext:(id)arg1;
++ (void)deleteAccount:(id)arg1;
 + (id)existingCloudObjectForRecordID:(id)arg1;
++ (void)initialize;
 + (id)keyPathsForValuesAffectingLocalizedName;
 + (id)keyPathsForValuesAffectingVisibleNoteContainerChildren;
++ (id)localAccountInContext:(id)arg1;
++ (void)localeDidChange:(id)arg1;
++ (id)localizedLocalAccountName;
++ (id)newAccountWithIdentifier:(id)arg1 type:(int)arg2 context:(id)arg3;
 + (id)newCloudObjectForRecord:(id)arg1;
-+ (id)recordType;
++ (id)newLocalAccountInContext:(id)arg1;
 + (id)standardFolderIdentifierWithPrefix:(id)arg1 accountIdentifier:(id)arg2 accountType:(int)arg3;
 
 - (void).cxx_destruct;
@@ -50,7 +68,9 @@
 - (void)awakeFromFetch;
 - (void)awakeFromInsert;
 - (int)compare:(id)arg1;
+- (unsigned int)countOfVisibleFolders;
 - (void)createStandardFolders;
+- (id)cryptoPassphraseVerifier;
 - (void)dealloc;
 - (id)defaultFolder;
 - (id)defaultFolderIdentifier;
@@ -71,13 +91,18 @@
 - (id)noteVisibilityTestingForSearchingAccount;
 - (void)noteWillBeDeletedOrUndeleted:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
+- (id)passwordProtectedNotes;
+- (id)predicateForFolders;
+- (id)predicateForNotesInAccount;
 - (id)predicateForSearchableAttachments;
 - (id)predicateForSearchableNotes;
 - (id)predicateForVisibleAttachments;
+- (id)predicateForVisibleFolders;
 - (id)predicateForVisibleNotes;
 - (id)predicateForVisibleNotesIncludingTrash;
 - (void)prepareForDeletion;
 - (id)recordName;
+- (id)recordType;
 - (id)recordZoneID;
 - (void)removeAllObserversIfNecessary;
 - (void)removeTrashObserversIfNecessary;
@@ -87,9 +112,11 @@
 - (void)setDefaultFolder:(id)arg1;
 - (void)setDidAddObservers:(BOOL)arg1;
 - (void)setDidAddTrashObservers:(BOOL)arg1;
+- (void)setDidChooseToMigrate:(BOOL)arg1;
 - (void)setMarkedForDeletion:(BOOL)arg1;
 - (void)setName:(id)arg1;
 - (void)setTrashFolder:(id)arg1;
+- (void)setTrashFolderHiddenSelectorDelayer:(id)arg1;
 - (BOOL)shouldBeDeletedFromLocalDatabase;
 - (id)standardFolderIdentifierWithPrefix:(id)arg1;
 - (BOOL)supportsEditingNotes;
@@ -98,8 +125,10 @@
 - (id)titleForNavigationBar;
 - (id)titleForTableViewCell;
 - (id)trashFolder;
+- (id)trashFolderHiddenSelectorDelayer;
 - (id)trashFolderIdentifier;
 - (void)updateAccountNameForAccountListSorting;
+- (void)updateTrashFolderHiddenNoteContainerState;
 - (id)visibleFolders;
 - (id)visibleFoldersWithParent:(id)arg1;
 - (id)visibleNoteContainerChildren;

@@ -10,6 +10,7 @@
     MPAVController *_player;
     MPMediaQuery *_query;
     <MCDCarDisplayServiceProvider> *_serviceProvider;
+    BOOL _topLevel;
     BOOL _viewHasAppeared;
 }
 
@@ -18,13 +19,18 @@
 @property (nonatomic, readonly) MPAVController *player;
 @property (nonatomic, readonly) MPMediaQuery *query;
 @property (nonatomic, readonly) <MCDCarDisplayServiceProvider> *serviceProvider;
+@property (nonatomic) BOOL topLevel;
 @property (nonatomic) BOOL viewHasAppeared;
 
++ (void)_adjustTintColorForSubviewsInCell:(id)arg1 didHighlight:(BOOL)arg2;
 + (id)addAlbumArtViewFromItem:(id)arg1 toCell:(id)arg2 rowHeight:(float)arg3;
 + (id)addAlbumArtViewWithImage:(id)arg1 toCell:(id)arg2 rowHeight:(float)arg3;
++ (void)addTemplateImage:(id)arg1 toCell:(id)arg2;
++ (void)removeImageFromCell:(id)arg1;
 
 - (void).cxx_destruct;
 - (void)_itemChanged:(id)arg1;
+- (void)_limitedUIDidChange;
 - (void)_nowPlayingButtonTapped:(id)arg1;
 - (void)_presentNowPlayingViewController;
 - (void)_updateNowPlayingVisibility;
@@ -39,10 +45,14 @@
 - (id)serviceProvider;
 - (void)setAlwaysShowNavBar:(BOOL)arg1;
 - (void)setLimitedUI:(BOOL)arg1;
+- (void)setTopLevel:(BOOL)arg1;
 - (void)setViewHasAppeared:(BOOL)arg1;
+- (void)tableView:(id)arg1 didHighlightRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
+- (void)tableView:(id)arg1 didUnhighlightRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
 - (BOOL)tableView:(id)arg1 shouldChangeFocusedItem:(id)arg2 fromRowAtIndexPath:(id)arg3;
+- (BOOL)topLevel;
 - (id)viewControllerForRowAtIndexPath:(id)arg1;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLoad;

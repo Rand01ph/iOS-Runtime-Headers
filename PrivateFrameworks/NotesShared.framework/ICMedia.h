@@ -4,6 +4,8 @@
 
 @interface ICMedia : ICCloudSyncingObject <ICCloudObject>
 
+@property (nonatomic, retain) NSData *assetCryptoInitializationVector;
+@property (nonatomic, retain) NSData *assetCryptoTag;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) NSString *filename;
@@ -12,18 +14,35 @@
 @property (readonly) Class superclass;
 
 + (id)allCloudObjects;
++ (id)allMediaInContext:(id)arg1;
 + (id)containerDirectoryURLForMediaWithIdentifier:(id)arg1;
++ (void)deleteMedia:(id)arg1;
 + (id)existingCloudObjectForRecordID:(id)arg1;
 + (id)mediaDirectoryURL;
++ (id)mediaFileWritingQueue;
 + (id)mediaURLForMediaWithIdentifier:(id)arg1 filename:(id)arg2;
++ (id)mediaWithIdentifier:(id)arg1 context:(id)arg2;
 + (id)newCloudObjectForRecord:(id)arg1;
++ (id)newFetchRequestForMediaInContext:(id)arg1;
++ (id)newMediaWithAttachment:(id)arg1 context:(id)arg2;
++ (id)newMediaWithAttachment:(id)arg1 forData:(id)arg2 filename:(id)arg3 forceWriteInBackground:(BOOL)arg4 context:(id)arg5 completionBlock:(id /* block */)arg6;
++ (id)newMediaWithAttachment:(id)arg1 forFileWrapper:(id)arg2 context:(id)arg3 completionBlock:(id /* block */)arg4;
++ (id)newMediaWithAttachment:(id)arg1 forURL:(id)arg2 context:(id)arg3 completionBlock:(id /* block */)arg4;
++ (id)newMediaWithAttachment:(id)arg1 forURL:(id)arg2 context:(id)arg3 waitUntilDone:(BOOL)arg4 completionBlock:(id /* block */)arg5;
++ (id)newMediaWithIdentifier:(id)arg1 context:(id)arg2;
 + (void)purgeAllMedia;
-+ (id)recordType;
++ (void)purgeAllMediaFiles;
++ (void)purgeAllMediaInContext:(id)arg1;
++ (void)purgeMedia:(id)arg1;
++ (id)visibleMediaInContext:(id)arg1;
 
 - (id)anyNote;
 - (id)containerDirectoryURL;
 - (id)data;
+- (id)decryptedData;
 - (void)deleteFromLocalDatabase;
+- (id)encryptedMediaURL;
+- (id)filename;
 - (BOOL)hasAllMandatoryFields;
 - (BOOL)hasFile;
 - (BOOL)isArchivedDirectory;
@@ -37,16 +56,21 @@
 - (void)mergeDataFromRecord:(id)arg1;
 - (BOOL)needsToBeDeletedFromCloud;
 - (id)objectsToBeDeletedBeforeThisObject;
+- (id)parentEncryptableObject;
 - (void)prepareForDeletion;
 - (id)recordName;
+- (id)recordType;
 - (id)recordZoneID;
 - (void)resetUniqueIdentifier;
+- (void)saveAndClearDecryptedData;
+- (void)setFilename:(id)arg1;
 - (BOOL)supportsDeletionByTTL;
 - (id)threadUnsafeNewlyCreatedRecord;
 - (void)updateChangeCountForAllAttachments;
 - (void)writeData:(id)arg1 forceWriteInBackground:(BOOL)arg2 completionBlock:(id /* block */)arg3;
 - (void)writeDataFromAsset:(id)arg1 isArchivedDirectory:(BOOL)arg2 completionBlock:(id /* block */)arg3;
 - (void)writeDataFromFileAtURL:(id)arg1 completionBlock:(id /* block */)arg2;
+- (void)writeDataFromFileAtURL:(id)arg1 waitUntilDone:(BOOL)arg2 completionBlock:(id /* block */)arg3;
 - (void)writeDataFromFileWrapper:(id)arg1 completionBlock:(id /* block */)arg2;
 - (void)writeDataWithFileSize:(unsigned long long)arg1 writeBlock:(id /* block */)arg2 completionBlock:(id /* block */)arg3;
 

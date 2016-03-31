@@ -16,6 +16,7 @@
 - (BOOL)actionLabelsMayAdjustFontsToFit;
 - (BOOL)actionLabelsMayUseMarqueeWhenFocused;
 - (float)actionWidthForMinimumActionWidth:(float)arg1;
+- (void)animateAlertControllerView:(id)arg1 ofAlertController:(id)arg2 forPresentation:(BOOL)arg3 inContainerView:(id)arg4 descendantOfContainerView:(id)arg5 duration:(double)arg6 completionBlock:(id /* block */)arg7;
 - (float)backgroundCornerRadius;
 - (id)backgroundView;
 - (id)backgroundViewForAction:(id)arg1 withViewRepresentation:(id)arg2 inAlertController:(id)arg3;
@@ -24,10 +25,9 @@
 - (struct CGSize { float x1; float x2; })collectionViewOutsetSize;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })contentInsets;
 - (id)dimmingViewForAlertController:(id)arg1;
-- (BOOL)focusedActionAnimatesOnPresentationAndDismissal;
 - (BOOL)hideActionSeparators;
 - (BOOL)hideCancelAction:(id)arg1 inAlertController:(id)arg2;
-- (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })highlightedActionTransformForActionSize:(struct CGSize { float x1; float x2; })arg1;
+- (struct CATransform3D { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; float x16; })highlightedActionTransformForActionSize:(struct CGSize { float x1; float x2; })arg1;
 - (float)marginAboveMessageLabelFirstBaseline;
 - (float)marginAboveTitleLabelFirstBaseline;
 - (float)marginBelowLastLabelLastBaseline;
@@ -40,6 +40,7 @@
 - (id)messageLabelColor;
 - (id)messageLabelFont;
 - (float)minimumActionHeight;
+- (id)motionEffects;
 - (int)permittedActionLayoutDirection;
 - (id)preferredActionFont;
 - (id)regularActionFont;
@@ -49,5 +50,6 @@
 - (float)textFieldHorizontalMargin;
 - (id)titleLabelColor;
 - (id)titleLabelFont;
+- (double)transitionDurationForPresentation:(BOOL)arg1 ofAlertController:(id)arg2;
 
 @end

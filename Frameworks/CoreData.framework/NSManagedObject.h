@@ -228,6 +228,13 @@
 
 + (BOOL)isTracked;
 
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
++ (id)objectFromObjectID:(id)arg1 context:(id)arg2;
+
+- (void)obtainPermanentObjectIDIfNecessary;
+- (void)postNotificationOnMainThreadWithName:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/SlideshowKit.framework/Frameworks/OpusFoundation.framework/OpusFoundation
 
 - (id)uri;

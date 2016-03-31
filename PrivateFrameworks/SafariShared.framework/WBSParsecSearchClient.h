@@ -40,6 +40,7 @@
     double _minimumIntervalBetweenQueriesFromBag;
     double _minimumIntervalBetweenQueriesFromSearchResponse;
     unsigned int _minimumQueryLength;
+    unsigned int _mode;
     NSArray *_optionalQueryItems;
     NSNumber *_otherRenderTimeout;
     NSString *_recentlyUsedAppIdentifierListString;
@@ -50,6 +51,7 @@
     NSURL *_searchFallbackURL;
     NSNumber *_searchRenderTimeout;
     NSURL *_searchURL;
+    NSDate *_sharedURLSessionExpirationTime;
     <WBSParsecSearchClientStorage> *_storage;
     NSString *_storeFrontIdentifier;
     NSArray *_subscriptionProviderBundleIdentifierWhitelist;
@@ -61,6 +63,7 @@
     NSTimer *_updateTimer;
     BOOL _updatingLocation;
     NSURLSessionConfiguration *_urlSessionConfiguration;
+    NSURLSession *_urlSessionForSearchSessions;
     NSString *_userAgent;
     NSString *_userGUID;
     BOOL _userGUIDEnabled;
@@ -91,6 +94,7 @@
 @property (nonatomic, readonly) double minimumIntervalBetweenQueriesFromBag;
 @property (nonatomic) double minimumIntervalBetweenQueriesFromSearchResponse;
 @property (nonatomic, readonly) unsigned int minimumQueryLength;
+@property (nonatomic) unsigned int mode;
 @property (nonatomic, readonly) NSArray *optionalQueryItems;
 @property (nonatomic, readonly) NSNumber *otherRenderTimeout;
 @property (nonatomic) BOOL safeModeEnabled;
@@ -109,6 +113,7 @@
 @property (setter=test_setHasCompletedBagFetch:, nonatomic) BOOL test_hasCompletedBagFetch;
 @property (getter=test_isValid, setter=test_setValid:, nonatomic) BOOL test_valid;
 @property (nonatomic, readonly) NSURLSessionConfiguration *urlSessionConfiguration;
+@property (nonatomic, retain) NSURLSession *urlSessionForSearchSessions;
 @property (getter=isValid, nonatomic, readonly) BOOL valid;
 
 + (id)_preferredLanguages;
@@ -173,6 +178,7 @@
 - (double)minimumIntervalBetweenQueriesFromBag;
 - (double)minimumIntervalBetweenQueriesFromSearchResponse;
 - (unsigned int)minimumQueryLength;
+- (unsigned int)mode;
 - (void)networkRequestDidFailWithError:(id)arg1 response:(id)arg2;
 - (id)optionalQueryItems;
 - (id)otherRenderTimeout;
@@ -188,8 +194,10 @@
 - (void)setLatestQueryTimestamp:(struct time_point<std::__1::chrono::steady_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000000> > > { struct duration<long long, std::__1::ratio<1, 1000000000> > { long long x_1_1_1; } x1; })arg1;
 - (void)setLocationCachingInterval:(double)arg1;
 - (void)setMinimumIntervalBetweenQueriesFromSearchResponse:(double)arg1;
+- (void)setMode:(unsigned int)arg1;
 - (void)setSafeModeEnabled:(BOOL)arg1;
 - (void)setSupportedDomainIdentifiers:(id)arg1;
+- (void)setUrlSessionForSearchSessions:(id)arg1;
 - (void)startUpdatingLocation;
 - (void)stopUpdatingLocation;
 - (id)storage;
@@ -208,5 +216,6 @@
 - (void)updateRecentlyUsedAppIdentifiers;
 - (void)updateURLSessionConfiguration;
 - (id)urlSessionConfiguration;
+- (id)urlSessionForSearchSessions;
 
 @end

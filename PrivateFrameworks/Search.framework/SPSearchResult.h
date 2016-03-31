@@ -13,6 +13,7 @@
     NSString *_externalIdentifier;
     int _flags;
     NSString *_geoUserSessionIDString;
+    unsigned int _geoUserSessionSequenceNumber;
     double _geoUserSessionStartTime;
     struct { 
         unsigned int identifier : 1; 
@@ -93,6 +94,7 @@
 @property (nonatomic) BOOL footnote_nowrap;
 @property (nonatomic) int footnote_size;
 @property (nonatomic, retain) NSString *geoUserSessionIDString;
+@property (nonatomic) unsigned int geoUserSessionSequenceNumber;
 @property (nonatomic) double geoUserSessionStartTime;
 @property (nonatomic, retain) NSString *groupName;
 @property (nonatomic) BOOL hasAssociatedUserActivity;
@@ -185,6 +187,7 @@
 @property (nonatomic, retain) NSString *summary;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) BOOL supportsActions;
+@property (nonatomic, readonly) BOOL supportsExpansion;
 @property (nonatomic, readonly) BOOL supportsImageAsyncLoading;
 @property (nonatomic) BOOL supportsImageAsyncLoading;
 @property (nonatomic, retain) NSString *templateName;
@@ -233,6 +236,7 @@
 - (int)flags;
 - (void)forwardInvocation:(id)arg1;
 - (id)geoUserSessionIDString;
+- (unsigned int)geoUserSessionSequenceNumber;
 - (double)geoUserSessionStartTime;
 - (BOOL)hasAssociatedUserActivity;
 - (BOOL)hasAuxiliarySubtitle;
@@ -275,6 +279,7 @@
 - (void)setFilename:(id)arg1;
 - (void)setFlags:(int)arg1;
 - (void)setGeoUserSessionIDString:(id)arg1;
+- (void)setGeoUserSessionSequenceNumber:(unsigned int)arg1;
 - (void)setGeoUserSessionStartTime:(double)arg1;
 - (void)setHasAssociatedUserActivity:(BOOL)arg1;
 - (void)setHasFlags:(BOOL)arg1;
@@ -347,6 +352,7 @@
 - (BOOL)shouldCropImageToCircle;
 - (BOOL)shouldFetchMediaArtwork;
 - (BOOL)supportsActions;
+- (BOOL)supportsExpansion;
 - (BOOL)supportsImageAsyncLoading;
 - (unsigned int)titleMaxLines;
 - (BOOL)useAppIconForFallbackThumbnail;

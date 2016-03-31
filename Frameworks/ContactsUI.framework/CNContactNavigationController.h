@@ -38,6 +38,8 @@
 @property (nonatomic) int rightButtonBehavior;
 @property (readonly) Class superclass;
 
++ (id)newContactFormatter;
+
 - (void).cxx_destruct;
 - (id)accountsAndGroupsDataSource;
 - (void)accountsAndGroupsViewControllerDidFinish:(id)arg1;
@@ -60,7 +62,6 @@
 - (void)contactListViewController:(id)arg1 shouldPresentContact:(id)arg2 shouldScrollToContact:(BOOL)arg3;
 - (BOOL)contactListViewController:(id)arg1 shouldSelectContact:(id)arg2 atIndexPath:(id)arg3;
 - (id)contactStore;
-- (id)contactStoreFilterFromPreferences;
 - (id)contactStyle;
 - (void)contactViewController:(id)arg1 didCompleteWithContact:(id)arg2;
 - (void)contactViewController:(id)arg1 didDeleteContact:(id)arg2;
@@ -70,14 +71,13 @@
 - (BOOL)hidesSearchableSources;
 - (BOOL)ignoresMapsData;
 - (id)initWithDataSource:(id)arg1;
+- (id)initWithDataSource:(id)arg1 contactFormatter:(id)arg2 applyGroupFilterFromPreferences:(BOOL)arg3;
 - (int)leftButtonBehavior;
 - (id)nonServerDataSource;
 - (void)presentAddContactViewController:(id)arg1 animated:(BOOL)arg2;
 - (void)presentContactViewController:(id)arg1 animated:(BOOL)arg2;
 - (void)presentGroupsViewController:(id)arg1;
-- (void)refreshEverythingNow:(id)arg1;
 - (int)rightButtonBehavior;
-- (void)saveContactStoreFilterToPreferences:(id)arg1;
 - (void)setAccountsAndGroupsDataSource:(id)arg1;
 - (void)setAllowsCanceling:(BOOL)arg1;
 - (void)setAllowsCardDeletion:(BOOL)arg1;
@@ -100,8 +100,6 @@
 - (void)updateNavigationButtonsAnimated:(BOOL)arg1;
 - (void)updateNavigationButtonsInSearchMode:(BOOL)arg1;
 - (void)updateNavigationButtonsInSearchMode:(BOOL)arg1 animated:(BOOL)arg2;
-- (void)viewDidAppear:(BOOL)arg1;
 - (void)viewWillAppear:(BOOL)arg1;
-- (void)viewWillDisappear:(BOOL)arg1;
 
 @end

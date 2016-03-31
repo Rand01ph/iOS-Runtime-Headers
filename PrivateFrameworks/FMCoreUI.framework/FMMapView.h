@@ -56,6 +56,7 @@
     BOOL _shouldDisplayOverlay;
     BOOL _showUserLocationCallout;
     MKUserLocation *_userLocation;
+    UIColor *_userLocationTintColor;
     MKUserLocationView *_userLocationView;
     NSTimer *_userSelectionTimer;
     _MKUserTrackingButton *_userTrackingButton;
@@ -103,7 +104,8 @@
 @property (nonatomic) BOOL shouldDisplayOverlay;
 @property (nonatomic) BOOL showUserLocationCallout;
 @property (readonly) Class superclass;
-@property (nonatomic) MKUserLocation *userLocation;
+@property (nonatomic, retain) MKUserLocation *userLocation;
+@property (nonatomic, retain) UIColor *userLocationTintColor;
 @property (nonatomic) MKUserLocationView *userLocationView;
 @property (nonatomic, retain) NSTimer *userSelectionTimer;
 @property (nonatomic, retain) _MKUserTrackingButton *userTrackingButton;
@@ -155,6 +157,7 @@
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (void)initialize;
+- (void)invalidateLayoutTimer;
 - (BOOL)isAllAnnotationsShown;
 - (BOOL)isFingerOnAnnotation;
 - (BOOL)isFingerOnMap;
@@ -261,6 +264,7 @@
 - (void)setShouldDisplayOverlay:(BOOL)arg1;
 - (void)setShowUserLocationCallout:(BOOL)arg1;
 - (void)setUserLocation:(id)arg1;
+- (void)setUserLocationTintColor:(id)arg1;
 - (void)setUserLocationView:(id)arg1;
 - (void)setUserSelectionTimer:(id)arg1;
 - (void)setUserTrackingButton:(id)arg1;
@@ -284,6 +288,7 @@
 - (void)updateUserTrackingButtonState;
 - (id)userLocation;
 - (void)userLocationTapped:(id)arg1;
+- (id)userLocationTintColor;
 - (id)userLocationView;
 - (id)userSelectionTimer;
 - (id)userTrackingButton;

@@ -4,8 +4,11 @@
 
 @interface SKUIItemOfferButton : UIControl <SKUIViewElementOfferButton> {
     UIColor *_backgroundColor;
+    float _borderColorAlphaMultiplier;
+    BOOL _borderCornerRadiusMatchesHalfBoundingDimension;
     UIView *_borderView;
     SKUIFocusedTouchGestureRecognizer *_cancelGestureRecognizer;
+    id /* block */ _centerImageProvider;
     UIImage *_cloudImage;
     UIColor *_cloudTintColor;
     UIColor *_confirmationColor;
@@ -16,6 +19,9 @@
     } _confirmationTitleFitSize;
     int _confirmationTitleStyle;
     <SKUIItemOfferButtonDelegate> *_delegate;
+    BOOL _disabledButSelectable;
+    BOOL _downloadRestores;
+    SKUIButtonViewElement *_element;
     int _fillStyle;
     UIImage *_image;
     UIImageView *_imageView;
@@ -35,18 +41,23 @@
     BOOL _usesDrawRectPath;
 }
 
+@property (nonatomic) float borderColorAlphaMultiplier;
+@property (nonatomic, copy) id /* block */ centerImageProvider;
 @property (nonatomic, copy) UIColor *cloudTintColor;
 @property (nonatomic, copy) NSString *confirmationTitle;
 @property (nonatomic) int confirmationTitleStyle;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <SKUIItemOfferButtonDelegate> *delegate;
 @property (readonly, copy) NSString *description;
+@property (getter=isDisabledButSelectable, nonatomic) BOOL disabledButSelectable;
+@property (nonatomic, retain) SKUIButtonViewElement *element;
 @property (nonatomic) int fillStyle;
 @property (readonly) unsigned int hash;
 @property (nonatomic, retain) UIImage *image;
 @property (nonatomic) <SKUIItemOfferButtonDelegate> *itemOfferDelegate;
 @property (nonatomic) float progress;
 @property (nonatomic) int progressType;
+@property (nonatomic, readonly) BOOL restores;
 @property (getter=isShowingConfirmation, nonatomic, readonly) BOOL showingConfirmation;
 @property (nonatomic) BOOL showsConfirmationState;
 @property (readonly) Class superclass;
@@ -73,6 +84,7 @@
 - (id)_buttonPropertiesForState:(id)arg1;
 - (void)_cancelGestureAction:(id)arg1;
 - (float)_horizontalInsetForTitleStyle:(int)arg1;
+- (id)_imageForProgressType:(int)arg1;
 - (void)_insertBorderView;
 - (void)_insertCancelGestureRecognizer;
 - (void)_insertImageView;
@@ -93,7 +105,9 @@
 - (void)_updateForChangedConfirmationTitleProperty;
 - (void)_updateForChangedTitleProperty;
 - (BOOL)beginTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
+- (float)borderColorAlphaMultiplier;
 - (void)cancelTrackingWithEvent:(id)arg1;
+- (id /* block */)centerImageProvider;
 - (id)cloudTintColor;
 - (id)confirmationTitle;
 - (int)confirmationTitleStyle;
@@ -102,10 +116,12 @@
 - (id)delegate;
 - (void)didMoveToWindow;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)element;
 - (void)endTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (int)fillStyle;
 - (id)image;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (BOOL)isDisabledButSelectable;
 - (BOOL)isShowingConfirmation;
 - (BOOL)isUniversal;
 - (id)itemOfferDelegate;
@@ -114,12 +130,17 @@
 - (float)progress;
 - (int)progressType;
 - (void)removeButtonStateAnimations;
+- (BOOL)restores;
 - (void)setBackgroundColor:(id)arg1;
+- (void)setBorderColorAlphaMultiplier:(float)arg1;
+- (void)setCenterImageProvider:(id /* block */)arg1;
 - (void)setCloudTintColor:(id)arg1;
 - (void)setColoringWithAppearance:(id)arg1;
 - (void)setConfirmationTitle:(id)arg1;
 - (void)setConfirmationTitleStyle:(int)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setDisabledButSelectable:(BOOL)arg1;
+- (void)setElement:(id)arg1;
 - (void)setEnabled:(BOOL)arg1;
 - (void)setFillStyle:(int)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;

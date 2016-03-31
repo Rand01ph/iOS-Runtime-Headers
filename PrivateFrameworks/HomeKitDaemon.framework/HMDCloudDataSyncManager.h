@@ -11,11 +11,13 @@
     BOOL _cloudHomeDataRecordExists;
     id /* block */ _cloudMetadataDeletedNotificationHandler;
     BOOL _cloudMetadataRecordExists;
+    HMDCloudReadOnlyModeFilter *_cloudReadonlyModeFilter;
     NSData *_cloudServerTokenData;
     HMMessageDispatcher *_configSyncDispatcher;
     CKContainer *_container;
     id /* block */ _controllerKeyAvailableNotificationHandler;
     NSObject<OS_dispatch_source> *_controllerKeyPollTimer;
+    NSMutableArray *_currentBackoffTimerValuesInMinutes;
     CKDatabase *_database;
     BOOL _decryptionFailed;
     id /* block */ _fetchCompletionHandler;
@@ -48,11 +50,13 @@
 @property (nonatomic) BOOL cloudHomeDataRecordExists;
 @property (nonatomic, copy) id /* block */ cloudMetadataDeletedNotificationHandler;
 @property (nonatomic) BOOL cloudMetadataRecordExists;
+@property (nonatomic, retain) HMDCloudReadOnlyModeFilter *cloudReadonlyModeFilter;
 @property (nonatomic, retain) NSData *cloudServerTokenData;
 @property (nonatomic, retain) HMMessageDispatcher *configSyncDispatcher;
 @property (nonatomic, retain) CKContainer *container;
 @property (nonatomic, copy) id /* block */ controllerKeyAvailableNotificationHandler;
 @property (nonatomic, retain) NSObject<OS_dispatch_source> *controllerKeyPollTimer;
+@property (nonatomic, retain) NSMutableArray *currentBackoffTimerValuesInMinutes;
 @property (nonatomic, retain) CKDatabase *database;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) BOOL decryptionFailed;
@@ -93,7 +97,7 @@
 - (void)_handleChangedMetadataRecordWithEncodedData:(id)arg1 transaction:(id)arg2;
 - (void)_handleChangedRecordWithEncodedData:(id)arg1 encodeDataVersion2:(id)arg2;
 - (void)_handleControllerKeyAvailable;
-- (void)_handleFetchCompletedWithError:(id)arg1 serverToken:(id)arg2 completionHandler:(id /* block */)arg3 moreRecordsComing:(BOOL)arg4;
+- (void)_handleFetchCompletedWithError:(id)arg1 serverToken:(id)arg2 completionHandler:(id /* block */)arg3 moreRecordsComing:(BOOL)arg4 emptyRecord:(BOOL)arg5;
 - (void)_handleFetchedHomeDataRecord;
 - (void)_handleKeychainSyncChanged:(id)arg1;
 - (void)_handleKeychainSyncStateChanged:(BOOL)arg1;
@@ -106,6 +110,8 @@
 - (void)_resetMetadataRecordState;
 - (void)_setupSubscription;
 - (void)_startControllerKeyPollTimer;
+- (void)_startControllerKeyPollTimerWithBackoff;
+- (void)_startControllerKeyPollTimerWithValue:(long long)arg1;
 - (void)_startFetchPollTimer;
 - (void)_startFetchRetryTimer;
 - (void)_stopControllerKeyPollTimer;
@@ -122,6 +128,7 @@
 - (BOOL)cloudHomeDataRecordExists;
 - (id /* block */)cloudMetadataDeletedNotificationHandler;
 - (BOOL)cloudMetadataRecordExists;
+- (id)cloudReadonlyModeFilter;
 - (id)cloudServerTokenData;
 - (id)configSyncDispatcher;
 - (void)connection:(id)arg1 didReceiveIncomingMessage:(id)arg2;
@@ -130,6 +137,7 @@
 - (id)container;
 - (id /* block */)controllerKeyAvailableNotificationHandler;
 - (id)controllerKeyPollTimer;
+- (id)currentBackoffTimerValuesInMinutes;
 - (id)database;
 - (void)dealloc;
 - (BOOL)decryptionFailed;
@@ -141,7 +149,7 @@
 - (id)homeDataFetchedTransaction;
 - (id)homeDataRecord;
 - (id)homeManager;
-- (id)initWithCloudServerTokenData:(id)arg1 messageDispatcher:(id)arg2 cloudDataSyncStateFilter:(id)arg3 homeManager:(id)arg4 callbackQueue:(id)arg5;
+- (id)initWithCloudServerTokenData:(id)arg1 messageDispatcher:(id)arg2 cloudDataSyncStateFilter:(id)arg3 cloudReadonlyModeFilter:(id)arg4 homeManager:(id)arg5 callbackQueue:(id)arg6;
 - (BOOL)keychainSyncEnabled;
 - (id)lastHomeDataChangeTag;
 - (id)lastMetadataChangeTag;
@@ -155,6 +163,7 @@
 - (id)pollTimer;
 - (id)pushConnection;
 - (void)resetCloudDataAndDeleteMetadataForCurrentAccount:(BOOL)arg1 completionHandler:(id /* block */)arg2;
+- (void)resetCloudServerTokenData:(id)arg1;
 - (id)retryTimer;
 - (id)serverTokenData;
 - (void)setAccountActive:(BOOL)arg1;
@@ -167,12 +176,14 @@
 - (void)setCloudMetadataDeletedNotificationBlock:(id /* block */)arg1;
 - (void)setCloudMetadataDeletedNotificationHandler:(id /* block */)arg1;
 - (void)setCloudMetadataRecordExists:(BOOL)arg1;
+- (void)setCloudReadonlyModeFilter:(id)arg1;
 - (void)setCloudServerTokenData:(id)arg1;
 - (void)setConfigSyncDispatcher:(id)arg1;
 - (void)setContainer:(id)arg1;
 - (void)setControllerKeyAvailableNotificationBlock:(id /* block */)arg1;
 - (void)setControllerKeyAvailableNotificationHandler:(id /* block */)arg1;
 - (void)setControllerKeyPollTimer:(id)arg1;
+- (void)setCurrentBackoffTimerValuesInMinutes:(id)arg1;
 - (void)setDataAvailableFromCloudCompletionBlock:(id /* block */)arg1;
 - (void)setDatabase:(id)arg1;
 - (void)setDecryptionFailed:(BOOL)arg1;
@@ -197,6 +208,7 @@
 - (void)setUuid:(id)arg1;
 - (void)setWorkQueue:(id)arg1;
 - (void)updateAccountStatusChanged:(BOOL)arg1 completionHandler:(id /* block */)arg2;
+- (void)updateServerTokenStatusOnCloudFilter;
 - (void)uploadHomeData:(id)arg1 metadata:(id)arg2 completionHandler:(id /* block */)arg3;
 - (id)uuid;
 - (id)workQueue;

@@ -19,8 +19,8 @@
 + (double)SOCCorrectionFactor;
 + (id)defaults;
 + (id)energyKeyToRootNodeID;
-+ (id)entryEventBackwardDefinitionAmcStatsPerfCounters;
-+ (id)entryEventBackwardDefinitionAppleEmbeddedPcieLinkStates;
++ (id)entryEventBackwardDefinitionAMCStatsPerfCounters;
++ (id)entryEventBackwardDefinitionAppleEmbeddedPCIELinkStates;
 + (id)entryEventBackwardDefinitionCLPCStatsControlEffort;
 + (id)entryEventBackwardDefinitionCLPCStatsCounters;
 + (id)entryEventBackwardDefinitionCLPCStatsFrameRateHistogram;
@@ -36,6 +36,7 @@
 + (id)entryEventBackwardDefinitionEnergyModel;
 + (id)entryEventBackwardDefinitionGPUStatsActiveTimeHistogram;
 + (id)entryEventBackwardDefinitionGPUStatsDVDRequestStates;
++ (id)entryEventBackwardDefinitionGPUStatsGPUCLTM;
 + (id)entryEventBackwardDefinitionGPUStatsGPUPerformanceStates;
 + (id)entryEventBackwardDefinitionGPUStatsIdleTimeHistogram;
 + (id)entryEventBackwardDefinitionH6ISPH6ISPPowerState;
@@ -48,11 +49,11 @@
 + (id)entryEventBackwardDefinitionOscarPlatformpowerstate;
 + (id)entryEventBackwardDefinitionOscarSensorevents;
 + (id)entryEventBackwardDefinitionOscarSensorpowerstate;
-+ (id)entryEventBackwardDefinitionSoCStatsDeviceStats;
++ (id)entryEventBackwardDefinitionSoCStatsDeviceStates;
 + (id)entryEventBackwardDefinitionSoCStatsH6PMGRCounters;
++ (id)entryEventBackwardDefinitionSoCStatsH7PMGRCounters;
 + (id)entryEventBackwardDefinitionSoCStatsVoltageDomainPerformanceStates;
 + (id)entryEventBackwardDefinitionSocStatsDvdStats;
-+ (id)entryEventBackwardDefinitionSocStatsH7PmgrCounters;
 + (id)entryEventBackwardDefinitionWifiChipAWDLActivity;
 + (id)entryEventBackwardDefinitionWifiChipConnectionActivity;
 + (id)entryEventBackwardDefinitionWifiChipHSICActivity;

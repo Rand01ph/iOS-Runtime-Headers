@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface NSArray : NSObject <CKRecordValue, CSCoderEncoder, NSCopying, NSFastEnumeration, NSMutableCopying, NSSecureCoding, PQLBindable>
+@interface NSArray : NSObject <CKDParsedObject, CKRecordValue, CSCoderEncoder, NSCopying, NSFastEnumeration, NSMutableCopying, NSSecureCoding, PQLBindable>
 
 @property (nonatomic, readonly, retain) IMMessageItem *__imLastMessageItem;
 @property (nonatomic, readonly) NSDictionary *bw_builtInMicRouteDictionary;
@@ -191,10 +191,15 @@
 - (BOOL)writeToFile:(id)arg1 atomically:(BOOL)arg2;
 - (BOOL)writeToURL:(id)arg1 atomically:(BOOL)arg2;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
+- (id)hk_map:(id /* block */)arg1;
+
 // Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
 
+- (id)secureDescriptionWithBlacklistKeys:(id)arg1;
+- (id)secureDescriptionWithIndent:(id)arg1 newLine:(BOOL)arg2 blacklistedKeys:(id)arg3;
 - (id)shortDescription;
-- (id)shortDescriptionWithIndent:(id)arg1 newLine:(BOOL)arg2;
 
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
@@ -264,6 +269,7 @@
 - (id)axFilterObjectsUsingBlock:(id /* block */)arg1;
 - (BOOL)axIsEqualToOrderedArray:(id)arg1 withPredicate:(id /* block */)arg2;
 - (id)axMapObjectsUsingBlock:(id /* block */)arg1;
+- (id)axSafeObjectAtIndex:(unsigned int)arg1;
 - (id)axUniqueArrayWithPredicate:(id /* block */)arg1;
 - (id)firstPath;
 
@@ -331,6 +337,7 @@
 // Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
 
 - (id)CKSortedForUpload;
+- (void)_CKLogToFileHandle:(id)arg1 atDepth:(int)arg2;
 
 // Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
 
@@ -380,8 +387,9 @@
 
 // Image: /System/Library/PrivateFrameworks/CoreHAP.framework/CoreHAP
 
+- (id)secureDescriptionWithBlacklistKeys:(id)arg1;
+- (id)secureDescriptionWithIndent:(id)arg1 newLine:(BOOL)arg2 blacklistedKeys:(id)arg3;
 - (id)shortDescription;
-- (id)shortDescriptionWithIndent:(id)arg1 newLine:(BOOL)arg2;
 
 // Image: /System/Library/PrivateFrameworks/CoreMediaStream.framework/CoreMediaStream
 
@@ -504,6 +512,14 @@
 - (id)mf_reduce:(id /* block */)arg1;
 - (id)mf_uncommentedAddressList;
 - (id)mf_uniquifyWithComparator:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
+
+- (BOOL)MCSCWriteToFile:(id)arg1 atomically:(BOOL)arg2;
+- (BOOL)MCSCWriteToFile:(id)arg1 atomically:(BOOL)arg2 error:(id*)arg3;
+- (BOOL)MCSCWriteToFile:(id)arg1 atomically:(BOOL)arg2 mode:(unsigned short)arg3 error:(id*)arg4;
+- (BOOL)MCSCWriteToURL:(id)arg1 atomically:(BOOL)arg2 error:(id*)arg3;
+- (BOOL)MCSCWriteToURL:(id)arg1 atomically:(BOOL)arg2 mode:(unsigned short)arg3 error:(id*)arg4;
 
 // Image: /System/Library/PrivateFrameworks/MapsSupport.framework/MapsSupport
 

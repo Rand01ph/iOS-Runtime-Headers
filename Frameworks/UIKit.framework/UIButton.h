@@ -19,6 +19,7 @@
         unsigned int blurEnabled : 1; 
         unsigned int visualEffectViewEnabled : 1; 
         unsigned int suppressAccessibilityUnderline : 1; 
+        unsigned int requiresLayoutForPropertyChange : 1; 
     } _buttonFlags;
     UIVisualEffectView *_contentBackdropView;
     NSArray *_contentConstraints;
@@ -113,6 +114,7 @@
 + (id)buttonWithType:(int)arg1;
 
 - (void).cxx_destruct;
+- (id)__scalarStatisticsForUserTouchUpInsideEvent;
 - (BOOL)_alwaysHandleScrollerMouseEvent;
 - (void)_applyAppropriateChargeForButtonType;
 - (id)_archivableContent:(id*)arg1;
@@ -194,6 +196,7 @@
 - (void)_populateArchivedSubviews:(id)arg1;
 - (id)_preferredConfigurationForFocusAnimation:(int)arg1 inContext:(id)arg2;
 - (void)_prepareMaskAnimationViewIfNecessary;
+- (BOOL)_requiresLayoutForPropertyChange;
 - (id)_scriptingInfo;
 - (void)_selectGestureChanged:(id)arg1;
 - (float)_selectedIndicatorAlpha;
@@ -236,6 +239,7 @@
 - (id)_shadowColorForState:(unsigned int)arg1;
 - (BOOL)_shouldDefaultToTemplatesForImageViewBackground:(BOOL)arg1;
 - (BOOL)_shouldHaveFloatingAppearance;
+- (BOOL)_shouldSkipNormalLayoutForSakeOfTemplateLayout;
 - (BOOL)_shouldUpdatePressedness;
 - (void)_takeContentFromArchivableContent:(id)arg1;
 - (BOOL)_textNeedsCompositingModeWhenSelected;
@@ -366,7 +370,7 @@
 
 // Image: /System/Library/Frameworks/PassKit.framework/PassKit
 
-- (void)pk_applyAppearance:(struct _PKAppearanceSpecifier { BOOL x1; id x2; id x3; id x4; id x5; id x6; id x7; id x8; id x9; id x10; id x11; id x12; id x13; /* Warning: Unrecognized filer type: '' using 'void*' */ void*x14; void*x15; void*x16; void*x17; void*x18; void*x19; void*x20; void*x21; void*x22; void*x23; void*x24; void*x25; void*x26; void*x27; void*x28; void*x29; void*x30; void*x31; void*x32; void*x33; void*x34; void*x35; void*x36; void*x37; void*x38; void*x39; void*x40; void*x41; void*x42; void*x43; void*x44; void*x45; void*x46; void*x47; void*x48; void*x49; void*x50; void*x51; void*x52; void*x53; void*x54; void*x55; void*x56; void*x57; void*x58; void*x59; void*x60; unsigned short x61; void*x62; short x63; void*x64; void*x65; void*x66; void*x67; unsigned long x68; int x69; unsigned int x70/* : ? */; const void*x71; const void*x72; void*x73; void*x74; const int x75; void x76; void*x77; void*x78; void*x79; void*x80; const void*x81; void*x82; void*x83; void*x84; out const void*x85; short x86; void*x87; void*x88; void*x89; double x90; int x91; out void*x92; float x93; const void*x94; void*x95; void*x96; void*x97; out const void*x98; void*x99; void*x100; void*x101; double x102; int x103; out void*x104; void*x105; void*x106; void*x107; void*x108; void*x109; void*x110; void*x111; void*x112; void*x113; void*x114; void*x115; void*x116; void*x117; void*x118; void*x119; void*x120; void*x121; void*x122; void*x123; void*x124; void*x125; void*x126; void*x127; void*x128; void*x129; void*x130; double x131; int x132; out void*x133; void*x134; const void*x135; short x136; unsigned char x137; void*x138; void*x139; BOOL x140; void*x141; void*x142; void*x143; long long x144; void*x145; void*x146; short x147; void*x148; void*x149; void*x150; void*x151; void*x152; void*x153; void*x154; void*x155; void*x156; void*x157; void*x158; out unsigned char x159; void*x160; void*x161; out unsigned char x162; void*x163; void*x164; out unsigned char x165; void*x166; void*x167; void*x168; void*x169; void*x170; void*x171; void*x172; void*x173; void*x174; void*x175; void*x176; void*x177; void*x178; void*x179; void*x180; void*x181; void*x182; void*x183; }*)arg1;
+- (void)pk_applyAppearance:(struct _PKAppearanceSpecifier { BOOL x1; id x2; id x3; id x4; id x5; id x6; id x7; id x8; id x9; id x10; id x11; id x12; id x13; /* Warning: Unrecognized filer type: '' using 'void*' */ void*x14; void*x15; void*x16; void*x17; void*x18; void*x19; void x20; void*x21; void*x22; void*x23; void*x24; void*x25; void*x26; void*x27; void*x28; unsigned int x29; oneway int x30; void*x31; void*x32; unsigned short x33; void*x34; const void x35; int x36; BOOL x37; void*x38; void*x39; void*x40; in BOOL x41; int x42; in void*x43; unsigned char x44; out in void*x45; const out long x46; void*x47; const out void*x48; void*x49; void*x50; void*x51; void*x52; void*x53; void*x54; void*x55; void*x56; void*x57; struct x58; void*x59; void*x60; void*x61; void*x62; void*x63; void*x64; void*x65; void*x66; void*x67; void*x68; void*x69; void*x70; void*x71; void*x72; void*x73; void*x74; void*x75; void*x76; void*x77; void*x78; void*x79; void*x80; void*x81; void*x82; void x83; void*x84; void*x85; void*x86; void*x87; void*x88; void*x89; void*x90; void*x91; void*x92; void*x93; void*x94; void*x95; void*x96; void*x97; void*x98; void*x99; void*x100; void*x101; void*x102; void*x103; void*x104; void*x105; void*x106; void*x107; void*x108; void*x109; void*x110; void*x111; void*x112; void*x113; void*x114; void*x115; void*x116; id x117; void*x118; }*)arg1;
 - (id)pk_childrenForAppearance;
 
 // Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI

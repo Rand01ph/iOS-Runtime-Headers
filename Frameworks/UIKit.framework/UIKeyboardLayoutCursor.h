@@ -2,24 +2,31 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UIKeyboardLayoutCursor : UIKeyboardLayoutStar {
+@interface UIKeyboardLayoutCursor : UIKeyboardLayoutStar <UIKBAlertControllerDelegate> {
     BOOL _cachedCanMultitap;
     UIKBTree *_cachedMultitapKeyplane;
     BOOL _disableTouchInput;
     BOOL _ignoreEventsUntilPressEnds;
     UIKBTree *_indirectKeyboard;
+    NSString *_keyplaneBeforeDictation;
     NSArray *_keyplaneKeys;
     UILexicon *_recentInputs;
     UIAlertController *_recentInputsAlert;
     int _savedSelectedKeyIndex;
+    int _selectedKeyBeforeDictation;
     int _selectedKeyIndex;
     UIView *_selectionView;
     BOOL _suppressOperations;
-    BOOL _useDirectionalSelection;
 }
 
 @property (nonatomic, readonly) UIKBTree *currentKey;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSString *keyplaneBeforeDictation;
 @property (nonatomic, retain) UIAlertController *recentInputsAlert;
+@property (nonatomic) int selectedKeyBeforeDictation;
+@property (readonly) Class superclass;
 
 + (id)carKeyboardNameForKeyboard:(id)arg1 screenTraits:(id)arg2;
 + (struct CGSize { float x1; float x2; })keyboardSizeForInputMode:(id)arg1 screenTraits:(id)arg2 keyboardType:(int)arg3;
@@ -30,12 +37,14 @@
 - (BOOL)_handlePhysicalKeyDownWithEvent:(id)arg1;
 - (BOOL)_handleRemoteControlReceivedWithEvent:(id)arg1;
 - (BOOL)_handleWheelChangedWithEvent:(id)arg1;
+- (BOOL)_isDirectionalHeading:(unsigned int)arg1;
 - (id)_keyplaneForKeyplaneProperties;
 - (BOOL)_menuTapShouldExitVariants;
 - (void)_moveWithEvent:(id)arg1;
 - (void)_wheelChangedWithEvent:(id)arg1;
 - (void)acceptRecentInputIfNecessary;
 - (int)activeStateForKey:(id)arg1;
+- (void)alertDidDismiss;
 - (id)cacheTokenForKeyplane:(id)arg1;
 - (BOOL)canHandleEvent:(id)arg1;
 - (BOOL)canMultitap;
@@ -46,6 +55,7 @@
 - (void)deactivateKey:(id)arg1;
 - (void)dealloc;
 - (int)defaultSelectedVariantIndexForKey:(id)arg1 withActions:(unsigned long long)arg2;
+- (BOOL)diacriticForwardCompose;
 - (void)didSelectRecentInputString:(id)arg1;
 - (unsigned long long)downActionFlagsForKey:(id)arg1;
 - (int)enabledStateForKey:(id)arg1;
@@ -60,6 +70,7 @@
 - (BOOL)isKeyplaneDisabledWithName:(id)arg1;
 - (id)keyHitTestInSameRowAsCenter:(struct CGPoint { float x1; float x2; })arg1 size:(struct CGSize { float x1; float x2; })arg2;
 - (id)keyViewAnimator;
+- (id)keyplaneBeforeDictation;
 - (void)longPressAction;
 - (void)pressesBegan:(id)arg1 withEvent:(id)arg2;
 - (void)pressesCancelled:(id)arg1 withEvent:(id)arg2;
@@ -70,28 +81,35 @@
 - (void)remoteControlReceivedWithEvent:(id)arg1;
 - (void)runWithSuppressedActions:(id /* block */)arg1;
 - (void)selectInitialKeyIfNecessary;
+- (int)selectedKeyBeforeDictation;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })selectionFrameForKeyIndex:(int)arg1;
 - (void)setCursorLocation:(unsigned int)arg1;
 - (void)setDisableTouchInput:(BOOL)arg1;
 - (void)setHighlightedVariantIndex:(int)arg1 key:(id)arg2;
 - (void)setKeyboardAppearance:(int)arg1;
 - (void)setKeyboardName:(id)arg1 appearance:(int)arg2;
+- (void)setKeyplaneBeforeDictation:(id)arg1;
 - (void)setKeyplaneName:(id)arg1;
 - (void)setRecentInputs:(id)arg1;
 - (void)setRecentInputsAlert:(id)arg1;
+- (void)setSelectedKeyBeforeDictation:(int)arg1;
 - (void)setSelectedKeyIndex:(int)arg1;
 - (BOOL)shouldAddHandRestRecognizer;
 - (BOOL)shouldAllowCurrentKeyplaneReload;
+- (BOOL)shouldDeactivateWithoutWindow;
 - (BOOL)shouldMatchCaseForDomainKeys;
 - (BOOL)shouldMergeKey:(id)arg1;
 - (BOOL)shouldPreventInputManagerHitTestingForKey:(id)arg1;
 - (BOOL)shouldRetestKey:(id)arg1 withKeyplane:(id)arg2;
+- (BOOL)shouldShowDictationKey;
 - (BOOL)shouldToggleKeyplaneWithName:(id)arg1;
+- (BOOL)shouldUseDefaultShiftStateFromLayout;
 - (void)showKeyboardWithInputTraits:(id)arg1 screenTraits:(id)arg2 splitTraits:(id)arg3;
 - (void)showRecentInputsAlert;
 - (int)stateForCandidateListKey:(id)arg1;
 - (int)stateForKeyplaneSwitchKey:(id)arg1;
 - (BOOL)supportsEmoji;
+- (void)switchToDictationKeyplane;
 - (void)takeKeyAction:(id)arg1;
 - (unsigned int)targetEdgesForScreenGestureRecognition;
 - (int)targetKeyIndexAtOffset:(struct CGPoint { float x1; float x2; })arg1 fromKey:(id)arg2;

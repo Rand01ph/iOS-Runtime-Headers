@@ -21,10 +21,16 @@
 @property (nonatomic, retain) NSString *title;
 
 + (id)allCloudObjects;
++ (id)allFoldersInContext:(id)arg1;
++ (unsigned int)countOfFoldersMatchingPredicate:(id)arg1 context:(id)arg2;
 + (id)deduplicatingTitle:(id)arg1 forFolder:(id)arg2 ofAccount:(id)arg3;
++ (void)deleteFolder:(id)arg1;
 + (id)englishTitleForDefaultFolder;
 + (id)englishTitleForTrashFolder;
 + (id)existingCloudObjectForRecordID:(id)arg1;
++ (id)folderWithIdentifier:(id)arg1 context:(id)arg2;
++ (id)folderWithIdentifierCreatingIfNecessary:(id)arg1 context:(id)arg2;
++ (id)foldersMatchingPredicate:(id)arg1 context:(id)arg2;
 + (id)keyPathsForValuesAffectingIsLeaf;
 + (id)keyPathsForValuesAffectingTitleForTableViewCell;
 + (id)keyPathsForValuesAffectingVisibleNoteContainerChildren;
@@ -32,15 +38,22 @@
 + (id)localizedTitleForDefaultFolder;
 + (id)localizedTitleForTrashFolder;
 + (id)newCloudObjectForRecord:(id)arg1;
-+ (id)recordType;
++ (id)newFolderInContext:(id)arg1;
++ (id)newFolderWithIdentifier:(id)arg1 context:(id)arg2;
++ (id)predicateForVisibleFolders;
++ (id)predicateForVisibleFoldersIncludingHiddenNoteContainers:(BOOL)arg1;
++ (void)purgeFolder:(id)arg1;
 + (id)reservedFolderTitles;
 + (id)stringByScrubbingStringForFolderName:(id)arg1;
++ (id)visibleFoldersInContext:(id)arg1;
 
 - (id)accountName;
 - (void)awakeFromFetch;
 - (int)compare:(id)arg1;
+- (unsigned int)countOfVisibleNotesInFolder;
 - (void)deleteFromLocalDatabase;
 - (void)fixBrokenReferences;
+- (id)foldersInFolder;
 - (BOOL)hasAllMandatoryFields;
 - (BOOL)isAncestorOfFolder:(id)arg1;
 - (BOOL)isDefaultFolderForAccount;
@@ -62,11 +75,17 @@
 - (void)objectWasFetchedFromCloudWithRecord:(id)arg1;
 - (id)objectsToBeDeletedBeforeThisObject;
 - (id)parentFolder;
+- (id)predicateForAttachmentsInFolder;
+- (id)predicateForFoldersInFolder;
+- (id)predicateForNotesInFolder;
 - (id)predicateForSearchableAttachments;
 - (id)predicateForSearchableNotes;
 - (id)predicateForVisibleAttachments;
+- (id)predicateForVisibleAttachmentsInFolder;
 - (id)predicateForVisibleNotes;
+- (id)predicateForVisibleNotesInFolder;
 - (void)prepareForDeletion;
+- (id)recordType;
 - (id)recordZoneID;
 - (void)regenerateNestedTitleForSorting;
 - (void)resetUniqueIdentifier;
@@ -87,6 +106,7 @@
 - (id)visibleNoteContainerChildren;
 - (id)visibleNotes;
 - (unsigned int)visibleNotesCount;
+- (id)visibleNotesInFolder;
 - (id)visibleNotesIncludingChildFolders;
 
 @end

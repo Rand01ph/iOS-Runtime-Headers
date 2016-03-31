@@ -51,6 +51,7 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (void)_applicationEnteringForeground:(id)arg1;
 - (id)_contactAtIndexPath:(id)arg1;
 - (id)_sections;
 - (void)_updateCountString;
@@ -77,6 +78,7 @@
 - (id)initWithDataSource:(id)arg1 searchable:(BOOL)arg2;
 - (id)initWithStyle:(int)arg1;
 - (BOOL)isContactWithIdentifierMeContactOrLinkedToMeContact:(id)arg1;
+- (BOOL)isHandlingSearch;
 - (BOOL)isSearching;
 - (void)loadView;
 - (id)meContact;
